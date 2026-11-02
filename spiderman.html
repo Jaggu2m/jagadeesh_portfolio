@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spider-Verse Portfolio | AI/ML Engineer</title>
+    <link rel="stylesheet" href="./dist/output.css">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --spider-void: #05000a;
+            --spider-purple: #160024;
+            --spider-magenta: #e6006e;
+            --spider-hotpink: #ff0077;
+            --spider-orange: #ff4800;
+            --spider-bright-orange: #ff6a00;
+            --spider-amber: #ffa600;
+            --spider-yellow: #ffea00;
+            --spider-white-hot: #ffffff;
+            --spider-cyan: #00f3ff;
+            --spider-red: #ff0033;
+        }
+
+        body {
+            background-color: var(--spider-void);
+            color: #ffffff;
+            overflow-x: hidden;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .font-anton {
+            font-family: 'Anton', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-style: italic;
+        }
+
+        /* --- Fullscreen Hardware-Accelerated Multiverse Canvas --- */
+        #tunnel-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(ellipse at 50% 50%, #2e003c 0%, #150020 40%, #05000a 100%);
+        }
+
+        /* --- UI Free-Fall Parallax Layer --- */
+        .free-fall {
+            position: relative;
+            z-index: 10;
+            will-change: transform;
+            transition: transform 0.15s ease-out;
+        }
+
+        /* Dimensional Warp Burst Flash */
+        .warp-flash {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(255, 234, 0, 0.4) 0%, rgba(255, 72, 0, 0.5) 40%, rgba(255, 0, 119, 0.4) 70%, transparent 100%);
+            mix-blend-mode: screen;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 40;
+            transition: opacity 0.12s ease;
+        }
+
+        .warp-flash.active {
+            opacity: 1;
+        }
+
+        /* --- Spider-Verse Chromatic Glitch Effect --- */
+        .glitch {
+            position: relative;
+            display: inline-block;
+            color: white;
+            font-style: italic;
+            text-shadow: 3px 2px 0 var(--spider-cyan), -3px -2px 0 var(--spider-red), 0 0 15px var(--spider-orange);
+        }
+
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            mix-blend-mode: screen;
+        }
+
+        .glitch::before {
+            left: 3px;
+            text-shadow: -3px 0 var(--spider-red), 0 0 8px var(--spider-orange);
+            clip-path: inset(10% 0 60% 0);
+            animation: intense-glitch-1 0.2s infinite linear alternate-reverse;
+            z-index: -1;
+        }
+
+        .glitch::after {
+            left: -3px;
+            text-shadow: 3px 0 var(--spider-cyan), 0 0 8px var(--spider-yellow);
+            clip-path: inset(80% 0 10% 0);
+            animation: intense-glitch-2 0.25s infinite linear alternate-reverse;
+            z-index: -2;
+        }
+
+        @keyframes intense-glitch-1 {
+            0% { clip-path: inset(20% 0 80% 0); transform: translate(-4px, 2px) skewX(6deg); }
+            20% { clip-path: inset(60% 0 10% 0); transform: translate(3px, -2px) skewX(-6deg); }
+            40% { clip-path: inset(40% 0 50% 0); transform: translate(2px, 3px); }
+            60% { clip-path: inset(80% 0 5% 0); transform: translate(-2px, -3px); }
+            80% { clip-path: inset(10% 0 70% 0); transform: translate(4px, 1px) skewX(3deg); }
+            100% { clip-path: inset(30% 0 50% 0); transform: translate(-3px, -2px); }
+        }
+
+        @keyframes intense-glitch-2 {
+            0% { clip-path: inset(10% 0 60% 0); transform: translate(4px, -2px); }
+            20% { clip-path: inset(80% 0 5% 0); transform: translate(-4px, 3px) skewX(-3deg); }
+            40% { clip-path: inset(30% 0 20% 0); transform: translate(2px, -3px); }
+            60% { clip-path: inset(70% 0 10% 0); transform: translate(-2px, 2px); }
+            80% { clip-path: inset(20% 0 50% 0); transform: translate(3px, -2px) skewX(6deg); }
+            100% { clip-path: inset(50% 0 30% 0); transform: translate(-4px, 2px); }
+        }
+
+        /* --- Halftone Hologram Project Cards --- */
+        .neon-card {
+            background-color: rgba(9, 1, 18, 0.82);
+            border: 3px solid var(--spider-hotpink);
+            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 6px 6px 0px var(--spider-orange), 0 0 20px rgba(255, 72, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(8px);
+        }
+
+        .neon-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle, var(--spider-yellow) 1.5px, transparent 1.5px);
+            background-size: 10px 10px;
+            opacity: 0.08;
+            transition: opacity 0.25s ease;
+            z-index: 1;
+            mix-blend-mode: color-dodge;
+            pointer-events: none;
+        }
+
+        .neon-card:hover {
+            transform: translateY(-8px) scale(1.025) skewX(-1.5deg);
+            border-color: var(--spider-yellow);
+            box-shadow: 0 0 35px var(--spider-hotpink), 10px 10px 0px var(--spider-cyan), 0 0 50px var(--spider-orange);
+        }
+        
+        .neon-card:hover::before {
+            opacity: 0.3;
+        }
+
+        .neon-card:hover .glitch-hover {
+            animation: intense-glitch-1 0.15s infinite linear alternate-reverse;
+            text-shadow: 3px 0 var(--spider-cyan), -3px 0 var(--spider-red), 0 0 12px var(--spider-yellow);
+        }
+
+        /* Ambient scanline overlay */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.3));
+            background-size: 100% 5px;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.4;
+        }
+
+        /* Multiverse Jump Indicator Badge */
+        .warp-status-badge {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: rgba(9, 1, 18, 0.85);
+            border: 2px solid var(--spider-cyan);
+            box-shadow: 4px 4px 0px var(--spider-hotpink), 0 0 15px rgba(0, 243, 255, 0.4);
+            color: var(--spider-yellow);
+            font-family: 'Anton', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            padding: 6px 14px;
+            z-index: 45;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .warp-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--spider-cyan);
+            box-shadow: 0 0 8px var(--spider-cyan);
+        }
+
+        .warp-status-badge.active .warp-dot {
+            background: var(--spider-hotpink);
+            box-shadow: 0 0 12px var(--spider-hotpink);
+            animation: blink-dot 0.2s infinite alternate;
+        }
+
+        @keyframes blink-dot {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative selection:bg-cyan-500 selection:text-white">
+
+    <!-- Scanline Overlay -->
+    <div class="scanlines"></div>
+
+    <!-- Dimensional Jump Warp Flash -->
+    <div id="warp-flash" class="warp-flash"></div>
+
+    <!-- 120 FPS High-Performance Multiverse Tunnel Canvas -->
+    <canvas id="tunnel-canvas"></canvas>
+
+    <!-- Real-time Dimension Status Badge -->
+    <div id="warp-badge" class="warp-status-badge">
+        <span class="warp-dot"></span>
+        <span id="warp-text">EARTH-42 // READY</span>
+    </div>
+
+    <!-- Main Content Wrapped in Free-fall Container -->
+    <div class="free-fall flex flex-col min-h-screen">
+        <main class="relative z-10 flex-grow container mx-auto px-6 py-12 md:py-24">
+            
+            <!-- Navbar / Header -->
+            <header class="flex justify-between items-center mb-16 md:mb-32">
+                <a href="#about" class="nav-jump text-4xl font-anton tracking-wider text-yellow-400 glitch cursor-pointer" data-text="AI // DEV">AI // DEV</a>
+                <nav class="space-x-8 text-sm font-semibold uppercase tracking-widest hidden md:flex items-center">
+                    <a href="#about" class="nav-jump hover:text-orange-400 transition-colors drop-shadow-[0_0_8px_currentColor]">Origins</a>
+                    <a href="#projects" class="nav-jump hover:text-pink-400 transition-colors text-pink-500 drop-shadow-[0_0_8px_currentColor]">Canon Events</a>
+                    <a href="#contact" class="nav-jump hover:text-cyan-400 transition-colors drop-shadow-[0_0_8px_currentColor]">Comms</a>
+                </nav>
+            </header>
+
+            <!-- Hero Section -->
+            <section id="about" class="max-w-4xl mx-auto text-center mb-40">
+                <p class="text-cyan-400 font-bold tracking-[0.3em] uppercase mb-4 text-sm md:text-base drop-shadow-[0_0_12px_rgba(0,243,255,0.9)]">Enter the Multiverse</p>
+                <h1 class="text-6xl md:text-8xl lg:text-9xl font-anton mb-6 leading-none glitch text-white uppercase" data-text="MULTIVERSAL PORTFOLIO">
+                    MULTIVERSAL PORTFOLIO
+                </h1>
+                <h2 class="text-2xl md:text-4xl font-anton text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-500 to-yellow-400 mb-8 transform -skew-x-6 drop-shadow-lg">
+                    AI & Full-Stack Engineer / Reality Hacker
+                </h2>
+                <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto leading-relaxed backdrop-blur-md bg-black/65 p-6 rounded-none border-l-4 border-orange-500 shadow-[0_0_35px_rgba(255,72,0,0.5)]">
+                    Navigating across stacks and dimensions to build high-performance intelligent systems. I craft resilient architectures, interpret complex data flows, and bridge the gap between AI and human reality.
+                </p>
+                <div class="mt-8 flex justify-center gap-4">
+                    <a href="#projects" class="nav-jump inline-block bg-orange-500 text-white font-anton text-xl px-8 py-3.5 border-2 border-yellow-400 shadow-[4px_4px_0_var(--spider-hotpink)] hover:bg-pink-600 hover:border-cyan-300 hover:shadow-[6px_6px_0_var(--spider-cyan)] hover:-translate-y-1 transition-all duration-200 transform -skew-x-12">
+                        <span class="inline-block transform skew-x-12">EXPLORE CANON EVENTS &darr;</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="mb-32">
+                <h2 class="text-5xl md:text-7xl font-anton mb-16 text-center glitch text-white" data-text="CANON EVENTS">CANON EVENTS</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    
+                    <!-- Project 1: Qgenie -->
+                    <div class="neon-card p-6 flex flex-col z-10 cursor-pointer project-card">
+                        <div class="text-xs font-bold text-cyan-400 tracking-widest uppercase mb-2">Generative AI SaaS</div>
+                        <h3 class="card-title text-3xl font-anton mb-3 text-white transition-colors glitch-hover relative">Qgenie</h3>
+                        <p class="text-sm text-gray-300 mb-6 flex-grow font-semibold leading-relaxed">
+                            An intelligent quiz and assessment generator powered by advanced NLP. Dynamically crafts contextual questions from diverse datasets across dimensions.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-bold bg-pink-600/30 text-pink-300 px-2.5 py-1 border border-pink-500 rounded-sm">Python</span>
+                            <span class="text-xs font-bold bg-cyan-600/30 text-cyan-300 px-2.5 py-1 border border-cyan-500 rounded-sm">React</span>
+                            <span class="text-xs font-bold bg-yellow-400/30 text-yellow-300 px-2.5 py-1 border border-yellow-400 rounded-sm">NLP</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: F1 Race Replay -->
+                    <div class="neon-card p-6 flex flex-col z-10 cursor-pointer project-card">
+                        <div class="text-xs font-bold text-orange-500 tracking-widest uppercase mb-2">Data Visualization</div>
+                        <h3 class="card-title text-3xl font-anton mb-3 text-white transition-colors glitch-hover relative">F1 Race Replay</h3>
+                        <p class="text-sm text-gray-300 mb-6 flex-grow font-semibold leading-relaxed">
+                            High-speed telemetry pipeline rendering multi-dimensional F1 race data into immersive, replayable dashboards. 
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-bold bg-pink-600/30 text-pink-300 px-2.5 py-1 border border-pink-500 rounded-sm">D3.js</span>
+                            <span class="text-xs font-bold bg-cyan-600/30 text-cyan-300 px-2.5 py-1 border border-cyan-500 rounded-sm">Pandas</span>
+                            <span class="text-xs font-bold bg-yellow-400/30 text-yellow-300 px-2.5 py-1 border border-yellow-400 rounded-sm">WebSockets</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: ABSA Pipeline -->
+                    <div class="neon-card p-6 flex flex-col z-10 cursor-pointer project-card">
+                        <div class="text-xs font-bold text-pink-500 tracking-widest uppercase mb-2">Machine Learning</div>
+                        <h3 class="card-title text-3xl font-anton mb-3 text-white transition-colors glitch-hover relative">ABSA Pipeline</h3>
+                        <p class="text-sm text-gray-300 mb-6 flex-grow font-semibold leading-relaxed">
+                            Aspect-Based Sentiment Analysis pipeline capable of dissecting chaotic multiversal feedback streams into highly structured emotional insights.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-bold bg-pink-600/30 text-pink-300 px-2.5 py-1 border border-pink-500 rounded-sm">PyTorch</span>
+                            <span class="text-xs font-bold bg-cyan-600/30 text-cyan-300 px-2.5 py-1 border border-cyan-500 rounded-sm">Transformers</span>
+                            <span class="text-xs font-bold bg-yellow-400/30 text-yellow-300 px-2.5 py-1 border border-yellow-400 rounded-sm">FastAPI</span>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer id="contact" class="text-center pb-12 pt-24 relative mt-auto border-t border-gray-800/60">
+                <h2 class="text-3xl font-anton mb-8 text-white glitch" data-text="READY TO JUMP DIMENSIONS?">READY TO JUMP DIMENSIONS?</h2>
+                <a href="mailto:engineer@spider-verse.local" id="initiate-btn" class="inline-block bg-pink-600 text-white font-bold font-anton text-2xl px-10 py-4 rounded-none border-4 border-pink-400 shadow-[6px_6px_0_var(--spider-cyan)] hover:bg-orange-500 hover:border-yellow-300 hover:shadow-[8px_8px_0_var(--spider-yellow)] hover:-translate-y-1 transition-all duration-200 transform -skew-x-12 cursor-pointer">
+                    <span class="inline-block transform skew-x-12">INITIATE SEQUENCE</span>
+                </a>
+                <p class="mt-16 text-xs text-gray-500 tracking-[0.2em] font-bold">© 2026 AI/ML ENGINEER. EARTH-42.</p>
+            </footer>
+
+        </main>
+    </div>
+
+    <!-- Scroll & Transition-Driven Across-the-Spider-Verse 120 FPS Engine -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('tunnel-canvas');
+            const ctx = canvas.getContext('2d');
+            const warpBadge = document.getElementById('warp-badge');
+            const warpText = document.getElementById('warp-text');
+            const warpFlash = document.getElementById('warp-flash');
+            const freeFall = document.querySelector('.free-fall');
+
+            let width = 0;
+            let height = 0;
+            let dpr = 1;
+
+            function resize() {
+                dpr = Math.min(window.devicePixelRatio || 1, 2);
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width * dpr;
+                canvas.height = height * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            // --- Scroll & Velocity Physics State ---
+            let scrollZ = 0;
+            let targetScrollZ = 0;
+            let velocityZ = 0;
+            let lastScrollY = window.scrollY;
+            let isWarping = false;
+            let warpTimer = null;
+            let pulseEnergy = 0;
+            let isLoopRunning = false;
+
+            // Parallax mouse follow
+            let mouseX = 0, mouseY = 0;
+            let curMouseX = 0, curMouseY = 0;
+
+            window.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX - width / 2) / (width / 2);
+                mouseY = (e.clientY - height / 2) / (height / 2);
+                ensureRenderLoop();
+            }, { passive: true });
+
+            // --- USER IDEA: Motion Driven by Scrolling ---
+            window.addEventListener('scroll', () => {
+                const currentY = window.scrollY;
+                const deltaY = currentY - lastScrollY;
+                lastScrollY = currentY;
+
+                // Propel rings forward/backward with scroll velocity
+                velocityZ += deltaY * 1.8;
+                
+                // Cap maximum scroll velocity for comfort
+                if (velocityZ > 120) velocityZ = 120;
+                if (velocityZ < -120) velocityZ = -120;
+
+                setWarpStatus(true, 'WARPING // SCROLL TRAVEL');
+                ensureRenderLoop();
+            }, { passive: true });
+
+            // --- USER IDEA: Motion Driven by Project Hover / Focus ---
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    pulseEnergy = 1.0;
+                    velocityZ += 35;
+                    setWarpStatus(true, 'ANOMALY DETECTED // PULSE');
+                    ensureRenderLoop();
+                });
+                card.addEventListener('click', () => {
+                    triggerDimensionalWarp('ENTERING PROJECT // ANOMALY');
+                });
+            });
+
+            // --- USER IDEA: Motion Driven by Navigating to Another Page / Section ---
+            document.querySelectorAll('.nav-jump').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetId = link.getAttribute('href');
+                    if (targetId && targetId.startsWith('#')) {
+                        e.preventDefault();
+                        const targetEl = document.querySelector(targetId);
+                        
+                        triggerDimensionalWarp('DIMENSION JUMP // TRAVERSING');
+                        
+                        if (targetEl) {
+                            setTimeout(() => {
+                                targetEl.scrollIntoView({ behavior: 'smooth' });
+                            }, 100);
+                        }
+                    }
+                });
+            });
+
+            document.getElementById('initiate-btn').addEventListener('click', () => {
+                triggerDimensionalWarp('MULTIVERSE JUMP // EARTH-42');
+            });
+
+            function triggerDimensionalWarp(statusMessage) {
+                velocityZ = 140; // Massive forward warp thrust
+                pulseEnergy = 1.5;
+                isWarping = true;
+                
+                // Chromatic flash
+                warpFlash.classList.add('active');
+                setTimeout(() => warpFlash.classList.remove('active'), 200);
+
+                setWarpStatus(true, statusMessage || 'DIMENSION JUMP // ACTIVE');
+                ensureRenderLoop();
+
+                clearTimeout(warpTimer);
+                warpTimer = setTimeout(() => {
+                    isWarping = false;
+                }, 800);
+            }
+
+            function setWarpStatus(active, message) {
+                if (active) {
+                    warpBadge.classList.add('active');
+                    warpText.textContent = message;
+                } else {
+                    warpBadge.classList.remove('active');
+                    warpText.textContent = 'EARTH-42 // READY';
+                }
+            }
+
+            // --- 6-Sided Across the Spider-Verse Hexagon Ring Data ---
+            const NUM_RINGS = 12;
+            const rings = [];
+            for (let i = 0; i < NUM_RINGS; i++) {
+                rings.push({
+                    baseZ: (i / NUM_RINGS) * 3600,
+                    rot: (i % 2 === 0 ? 1 : -1) * (i * 1.5),
+                    colorShift: i % 3
+                });
+            }
+
+            // Laser Speed Warp Beams
+            const NUM_BEAMS = 30;
+            const beams = [];
+            const beamPalette = ['#ffea00', '#ff4800', '#ff0077', '#00f3ff', '#ffffff'];
+            for (let i = 0; i < NUM_BEAMS; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                beams.push({
+                    angle: angle,
+                    radius: Math.random() * 800 + 150,
+                    z: Math.random() * 3600,
+                    speedMult: Math.random() * 0.8 + 0.6,
+                    color: beamPalette[i % beamPalette.length],
+                    len: Math.random() * 40 + 20
+                });
+            }
+
+            // --- Draw Elongated Spider-Verse Hexagon ---
+            function drawHexagon(cx, cy, w, h) {
+                ctx.beginPath();
+                ctx.moveTo(cx - w * 0.28, cy - h * 0.5); // Top-left
+                ctx.lineTo(cx + w * 0.28, cy - h * 0.5); // Top-right
+                ctx.lineTo(cx + w * 0.5, cy);             // Right point
+                ctx.lineTo(cx + w * 0.28, cy + h * 0.5); // Bottom-right
+                ctx.lineTo(cx - w * 0.28, cy + h * 0.5); // Bottom-left
+                ctx.lineTo(cx - w * 0.5, cy);             // Left point
+                ctx.closePath();
+            }
+
+            // --- Render Engine ---
+            function render() {
+                // Apply physics damping (smooth friction)
+                velocityZ *= 0.88;
+                scrollZ += velocityZ;
+
+                // Subtle decay of pulse energy
+                pulseEnergy *= 0.94;
+
+                // Parallax smoothing
+                curMouseX += (mouseX - curMouseX) * 0.08;
+                curMouseY += (mouseY - curMouseY) * 0.08;
+
+                // Counter-tilt portfolio container
+                freeFall.style.transform = `rotateX(${-curMouseY * 6}deg) rotateY(${curMouseX * 6}deg)`;
+
+                // Clear screen
+                ctx.clearRect(0, 0, width, height);
+
+                const cx = width / 2 + curMouseX * 40;
+                const cy = height / 2 + curMouseY * 40;
+
+                ctx.save();
+                ctx.globalCompositeOperation = 'screen';
+
+                // 1. Deep Central Singularity Core
+                const singularityZ = 3600;
+                const coreRad = Math.max(120, 220 + Math.abs(velocityZ) * 0.8 + pulseEnergy * 60);
+                const coreGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreRad);
+                coreGrad.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
+                coreGrad.addColorStop(0.2, 'rgba(255, 234, 0, 0.7)');
+                coreGrad.addColorStop(0.45, 'rgba(255, 72, 0, 0.5)');
+                coreGrad.addColorStop(0.7, 'rgba(255, 0, 119, 0.3)');
+                coreGrad.addColorStop(1, 'transparent');
+
+                ctx.fillStyle = coreGrad;
+                ctx.beginPath();
+                ctx.arc(cx, cy, coreRad, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Horizontal Anamorphic Laser Flare across singularity
+                const flareLen = width * 0.85;
+                const flareGrad = ctx.createLinearGradient(cx - flareLen/2, cy, cx + flareLen/2, cy);
+                flareGrad.addColorStop(0, 'transparent');
+                flareGrad.addColorStop(0.3, 'rgba(255, 0, 119, 0.4)');
+                flareGrad.addColorStop(0.5, '#ffffff');
+                flareGrad.addColorStop(0.7, 'rgba(255, 72, 0, 0.4)');
+                flareGrad.addColorStop(1, 'transparent');
+
+                ctx.strokeStyle = flareGrad;
+                ctx.lineWidth = 3 + Math.abs(velocityZ) * 0.05 + pulseEnergy * 4;
+                ctx.beginPath();
+                ctx.moveTo(cx - flareLen/2, cy);
+                ctx.lineTo(cx + flareLen/2, cy);
+                ctx.stroke();
+
+                // 2. Concentric Deep Red Hexagons in Infinite Distance
+                for (let d = 1; d <= 3; d++) {
+                    const hexScale = d * 45;
+                    ctx.strokeStyle = d === 1 ? '#ff0033' : (d === 2 ? '#ff4800' : '#ff0077');
+                    ctx.lineWidth = 3;
+                    drawHexagon(cx, cy, hexScale * 2.2, hexScale * 1.4);
+                    ctx.stroke();
+                }
+
+                // 3. Laser Speed Warp Beams (stretch with scroll velocity!)
+                const warpSpeedFactor = Math.abs(velocityZ) * 0.4 + pulseEnergy * 20;
+                for (let i = 0; i < NUM_BEAMS; i++) {
+                    const b = beams[i];
+                    let currentZ = (b.z - scrollZ * b.speedMult) % 3600;
+                    if (currentZ < 0) currentZ += 3600;
+
+                    const pScale = 500 / Math.max(80, 3600 - currentZ);
+                    const bx = cx + Math.cos(b.angle) * b.radius * pScale;
+                    const by = cy + Math.sin(b.angle) * b.radius * pScale;
+                    const streakLen = (b.len + warpSpeedFactor * 1.5) * pScale;
+
+                    ctx.strokeStyle = b.color;
+                    ctx.lineWidth = Math.max(1.5, 2.5 * pScale);
+                    ctx.beginPath();
+                    ctx.moveTo(bx, by);
+                    ctx.lineTo(bx + Math.cos(b.angle) * streakLen, by + Math.sin(b.angle) * streakLen);
+                    ctx.stroke();
+                }
+
+                // 4. Movie-Accurate Hexagonal Portal Rings
+                for (let i = 0; i < NUM_RINGS; i++) {
+                    const ring = rings[i];
+                    // Progress Z toward camera
+                    let z = (ring.baseZ - scrollZ) % 3600;
+                    if (z < 0) z += 3600;
+
+                    // Perspective formula (Z: 3600 -> far, Z: 200 -> near camera)
+                    const depthNorm = (3600 - z) / 3600; // 0 (far) to 1 (near)
+                    const scale = Math.pow(depthNorm, 2.2) * 2.2 + 0.12;
+
+                    // Ring Dimensions (Elongated across-the-spider-verse hexagon ratio)
+                    const w = Math.min(width * 1.6, 1400) * scale;
+                    const h = w * 0.62;
+
+                    // Fade in at deep distance, full brightness in mid-tunnel, fade out near camera
+                    let alpha = 1;
+                    if (depthNorm < 0.15) alpha = depthNorm / 0.15;
+                    if (depthNorm > 0.85) alpha = (1 - depthNorm) / 0.15;
+                    alpha = Math.max(0, Math.min(1, alpha));
+
+                    ctx.save();
+                    ctx.translate(cx, cy);
+                    ctx.rotate((ring.rot * Math.PI) / 180);
+
+                    // A. Volumetric Collar Facet Fill
+                    const collarGrad = ctx.createLinearGradient(0, -h/2, 0, h/2);
+                    collarGrad.addColorStop(0, `rgba(255, 72, 0, ${0.28 * alpha})`);
+                    collarGrad.addColorStop(0.5, `rgba(255, 0, 119, ${0.12 * alpha})`);
+                    collarGrad.addColorStop(1, `rgba(255, 234, 0, ${0.28 * alpha})`);
+                    ctx.fillStyle = collarGrad;
+                    drawHexagon(0, 0, w, h);
+                    ctx.fill();
+
+                    // B. Outer Heavy Gradient Neon Stroke
+                    const outerGrad = ctx.createLinearGradient(-w/2, -h/2, w/2, h/2);
+                    outerGrad.addColorStop(0, `rgba(255, 0, 119, ${0.9 * alpha})`);
+                    outerGrad.addColorStop(0.3, `rgba(255, 72, 0, ${0.95 * alpha})`);
+                    outerGrad.addColorStop(0.5, `rgba(255, 234, 0, ${0.98 * alpha})`);
+                    outerGrad.addColorStop(0.7, `rgba(255, 72, 0, ${0.95 * alpha})`);
+                    outerGrad.addColorStop(1, `rgba(255, 0, 119, ${0.9 * alpha})`);
+
+                    ctx.strokeStyle = outerGrad;
+                    ctx.lineWidth = Math.max(2, 14 * scale);
+                    drawHexagon(0, 0, w, h);
+                    ctx.stroke();
+
+                    // C. Sharp Yellow Accent
+                    ctx.strokeStyle = `rgba(255, 234, 0, ${0.95 * alpha})`;
+                    ctx.lineWidth = Math.max(1, 4 * scale);
+                    drawHexagon(0, 0, w, h);
+                    ctx.stroke();
+
+                    // D. Inner White-Hot Laser Core
+                    const innerW = w * 0.84;
+                    const innerH = h * 0.84;
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${0.95 * alpha})`;
+                    ctx.lineWidth = Math.max(1, 2.5 * scale);
+                    drawHexagon(0, 0, innerW, innerH);
+                    ctx.stroke();
+
+                    // E. 3D Bevel Corner Connecting Struts
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${0.8 * alpha})`;
+                    ctx.lineWidth = Math.max(1, 2.5 * scale);
+                    const corners = [
+                        [-w * 0.28, -h * 0.5, -innerW * 0.28, -innerH * 0.5],
+                        [w * 0.28, -h * 0.5, innerW * 0.28, -innerH * 0.5],
+                        [w * 0.5, 0, innerW * 0.5, 0],
+                        [w * 0.28, h * 0.5, innerW * 0.28, innerH * 0.5],
+                        [-w * 0.28, h * 0.5, -innerW * 0.28, innerH * 0.5],
+                        [-w * 0.5, 0, -innerW * 0.5, 0]
+                    ];
+                    ctx.beginPath();
+                    for (let c = 0; c < corners.length; c++) {
+                        ctx.moveTo(corners[c][0], corners[c][1]);
+                        ctx.lineTo(corners[c][2], corners[c][3]);
+                    }
+                    ctx.stroke();
+
+                    // F. Digital Tech Hashes along Top and Bottom Bars
+                    if (scale > 0.4) {
+                        ctx.strokeStyle = `rgba(255, 234, 0, ${0.9 * alpha})`;
+                        ctx.lineWidth = Math.max(1.5, 3 * scale);
+                        const hashStep = w * 0.08;
+                        ctx.beginPath();
+                        for (let x = -w * 0.22; x <= w * 0.22; x += hashStep) {
+                            // Top hashes
+                            ctx.moveTo(x, -h * 0.5 - 6 * scale);
+                            ctx.lineTo(x, -h * 0.5 + 6 * scale);
+                            // Bottom hashes
+                            ctx.moveTo(x, h * 0.5 - 6 * scale);
+                            ctx.lineTo(x, h * 0.5 + 6 * scale);
+                        }
+                        ctx.stroke();
+
+                        // Glowing Target Crosshairs on Left and Right points
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.85 * alpha})`;
+                        ctx.lineWidth = Math.max(1, 2 * scale);
+                        const chLen = 12 * scale;
+                        ctx.beginPath();
+                        // Right point crosshair
+                        ctx.moveTo(w * 0.5 - chLen, 0); ctx.lineTo(w * 0.5 + chLen, 0);
+                        ctx.moveTo(w * 0.5, -chLen); ctx.lineTo(w * 0.5, chLen);
+                        // Left point crosshair
+                        ctx.moveTo(-w * 0.5 - chLen, 0); ctx.lineTo(-w * 0.5 + chLen, 0);
+                        ctx.moveTo(-w * 0.5, -chLen); ctx.lineTo(-w * 0.5, chLen);
+                        ctx.stroke();
+                    }
+
+                    ctx.restore();
+                }
+
+                ctx.restore();
+
+                // --- SMART POWER SAVING ---
+                // Only keep render loop active when there is motion (scroll velocity, warp, or mouse movement)
+                const isMoving = Math.abs(velocityZ) > 0.05 || isWarping || pulseEnergy > 0.01;
+                
+                if (isMoving) {
+                    requestAnimationFrame(render);
+                } else {
+                    // Motion has smoothly completed
+                    isLoopRunning = false;
+                    setWarpStatus(false);
+                }
+            }
+
+            function ensureRenderLoop() {
+                if (!isLoopRunning) {
+                    isLoopRunning = true;
+                    requestAnimationFrame(render);
+                }
+            }
+
+            // Initial render kick-off to draw static portal, then sleep at 0% CPU
+            ensureRenderLoop();
+        });
+    </script>
+</body>
+</html>
