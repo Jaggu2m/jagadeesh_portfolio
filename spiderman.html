@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spider-Verse Portfolio | AI/ML Engineer</title>
+    <title>Jagadeesh | AI Engineer & Full-Stack Developer</title>
     <link rel="stylesheet" href="./dist/output.css">
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --spider-void: #05000a;
@@ -37,7 +37,11 @@
             font-style: italic;
         }
 
-        /* --- Fullscreen Hardware-Accelerated Multiverse Canvas --- */
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Fullscreen Hardware-Accelerated Multiverse Canvas */
         #tunnel-canvas {
             position: fixed;
             top: 0;
@@ -49,7 +53,7 @@
             background: radial-gradient(ellipse at 50% 50%, #2e003c 0%, #150020 40%, #05000a 100%);
         }
 
-        /* --- UI Free-Fall Parallax Layer --- */
+        /* UI Free-Fall Parallax Layer */
         .free-fall {
             position: relative;
             z-index: 10;
@@ -65,7 +69,7 @@
             mix-blend-mode: screen;
             opacity: 0;
             pointer-events: none;
-            z-index: 40;
+            z-index: 50;
             transition: opacity 0.12s ease;
         }
 
@@ -73,7 +77,7 @@
             opacity: 1;
         }
 
-        /* --- Spider-Verse Chromatic Glitch Effect --- */
+        /* Spider-Verse Chromatic Glitch Effect */
         .glitch {
             position: relative;
             display: inline-block;
@@ -127,9 +131,9 @@
             100% { clip-path: inset(50% 0 30% 0); transform: translate(-4px, 2px); }
         }
 
-        /* --- Halftone Hologram Project Cards --- */
+        /* Halftone Hologram Project Cards */
         .neon-card {
-            background-color: rgba(9, 1, 18, 0.82);
+            background-color: rgba(9, 1, 18, 0.85);
             border: 3px solid var(--spider-hotpink);
             transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease;
             box-shadow: 6px 6px 0px var(--spider-orange), 0 0 20px rgba(255, 72, 0, 0.3);
@@ -152,18 +156,153 @@
         }
 
         .neon-card:hover {
-            transform: translateY(-8px) scale(1.025) skewX(-1.5deg);
+            transform: translateY(-8px) scale(1.02) skewX(-1.5deg);
             border-color: var(--spider-yellow);
             box-shadow: 0 0 35px var(--spider-hotpink), 10px 10px 0px var(--spider-cyan), 0 0 50px var(--spider-orange);
         }
         
         .neon-card:hover::before {
-            opacity: 0.3;
+            opacity: 0.28;
         }
 
         .neon-card:hover .glitch-hover {
             animation: intense-glitch-1 0.15s infinite linear alternate-reverse;
             text-shadow: 3px 0 var(--spider-cyan), -3px 0 var(--spider-red), 0 0 12px var(--spider-yellow);
+        }
+
+        /* Continuous Running Tech Stack Marquee */
+        .marquee-container {
+            overflow: hidden;
+            user-select: none;
+            position: relative;
+            padding: 12px 0;
+        }
+
+        .marquee-container::before, .marquee-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 120px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .marquee-container::before {
+            left: 0;
+            background: linear-gradient(to right, var(--spider-void), transparent);
+        }
+
+        .marquee-container::after {
+            right: 0;
+            background: linear-gradient(to left, var(--spider-void), transparent);
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 16px;
+            width: max-content;
+        }
+
+        .marquee-track.left {
+            animation: scroll-left 34s linear infinite;
+        }
+
+        .marquee-track.right {
+            animation: scroll-right 34s linear infinite;
+        }
+
+        .marquee-container:hover .marquee-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes scroll-right {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        .tech-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            background: rgba(18, 2, 35, 0.88);
+            border: 2px solid var(--spider-orange);
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 3px 3px 0px var(--spider-hotpink);
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .tech-pill:hover {
+            border-color: var(--spider-yellow);
+            color: var(--spider-yellow);
+            box-shadow: 0 0 15px var(--spider-yellow), 4px 4px 0px var(--spider-cyan);
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        /* Timeline Evolution Nodes */
+        .timeline-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--spider-orange), var(--spider-hotpink), var(--spider-cyan));
+            box-shadow: 0 0 15px var(--spider-hotpink);
+        }
+
+        @media (min-width: 768px) {
+            .timeline-line {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Interactive Project Modal */
+        .project-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 0, 10, 0.92);
+            backdrop-filter: blur(16px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .project-modal-backdrop.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .project-modal-box {
+            background: rgba(14, 2, 28, 0.96);
+            border: 3px solid var(--spider-yellow);
+            box-shadow: 0 0 45px var(--spider-orange), 12px 12px 0px var(--spider-hotpink);
+            width: 100%;
+            max-width: 920px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.95) translateY(20px);
+            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .project-modal-backdrop.open .project-modal-box {
+            transform: scale(1) translateY(0);
         }
 
         /* Ambient scanline overlay */
@@ -176,7 +315,7 @@
             background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.3));
             background-size: 100% 5px;
             pointer-events: none;
-            z-index: 50;
+            z-index: 40;
             opacity: 0.4;
         }
 
@@ -239,103 +378,958 @@
 
     <!-- Main Content Wrapped in Free-fall Container -->
     <div class="free-fall flex flex-col min-h-screen">
-        <main class="relative z-10 flex-grow container mx-auto px-6 py-12 md:py-24">
+        <main class="relative z-10 flex-grow container mx-auto px-6 py-8 md:py-16">
             
             <!-- Navbar / Header -->
-            <header class="flex justify-between items-center mb-16 md:mb-32">
-                <a href="#about" class="nav-jump text-4xl font-anton tracking-wider text-yellow-400 glitch cursor-pointer" data-text="AI // DEV">AI // DEV</a>
-                <nav class="space-x-8 text-sm font-semibold uppercase tracking-widest hidden md:flex items-center">
-                    <a href="#about" class="nav-jump hover:text-orange-400 transition-colors drop-shadow-[0_0_8px_currentColor]">Origins</a>
-                    <a href="#projects" class="nav-jump hover:text-pink-400 transition-colors text-pink-500 drop-shadow-[0_0_8px_currentColor]">Canon Events</a>
-                    <a href="#contact" class="nav-jump hover:text-cyan-400 transition-colors drop-shadow-[0_0_8px_currentColor]">Comms</a>
+            <header class="flex justify-between items-center mb-16 md:mb-24">
+                <a href="#hero" class="nav-jump text-3xl md:text-4xl font-anton tracking-wider text-yellow-400 glitch cursor-pointer" data-text="JAGADEESH // SYS">JAGADEESH</a>
+                <nav class="space-x-6 text-xs md:text-sm font-semibold uppercase tracking-widest hidden lg:flex items-center">
+                    <a href="#arsenal" class="nav-jump hover:text-orange-400 transition-colors drop-shadow-[0_0_8px_currentColor]">Arsenal</a>
+                    <a href="#about" class="nav-jump hover:text-cyan-400 transition-colors drop-shadow-[0_0_8px_currentColor]">Biography</a>
+                    <a href="#projects" class="nav-jump hover:text-pink-400 transition-colors text-pink-500 drop-shadow-[0_0_8px_currentColor]">Projects</a>
+                    <a href="#capabilities" class="nav-jump hover:text-yellow-400 transition-colors drop-shadow-[0_0_8px_currentColor]">Capabilities</a>
+                    <a href="#evolution" class="nav-jump hover:text-orange-400 transition-colors drop-shadow-[0_0_8px_currentColor]">05 // Evolution</a>
+                    <a href="#contact" class="nav-jump hover:text-cyan-400 transition-colors drop-shadow-[0_0_8px_currentColor]">06 // Comms</a>
                 </nav>
             </header>
 
             <!-- Hero Section -->
-            <section id="about" class="max-w-4xl mx-auto text-center mb-40">
-                <p class="text-cyan-400 font-bold tracking-[0.3em] uppercase mb-4 text-sm md:text-base drop-shadow-[0_0_12px_rgba(0,243,255,0.9)]">Enter the Multiverse</p>
-                <h1 class="text-6xl md:text-8xl lg:text-9xl font-anton mb-6 leading-none glitch text-white uppercase" data-text="MULTIVERSAL PORTFOLIO">
-                    MULTIVERSAL PORTFOLIO
+            <section id="hero" class="max-w-4xl mx-auto text-center mb-36 pt-6">
+                <p class="text-cyan-400 font-bold tracking-[0.3em] uppercase mb-4 text-xs md:text-sm drop-shadow-[0_0_12px_rgba(0,243,255,0.9)]">
+                    PORTFOLIO SPECIFICATION — JAGADEESH // SYSTEM ONLINE
+                </p>
+                <h1 class="text-6xl md:text-8xl lg:text-9xl font-anton mb-6 leading-none glitch text-white uppercase" data-text="JAGADEESH">
+                    JAGADEESH
                 </h1>
                 <h2 class="text-2xl md:text-4xl font-anton text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-500 to-yellow-400 mb-8 transform -skew-x-6 drop-shadow-lg">
-                    AI & Full-Stack Engineer / Reality Hacker
+                    AI Engineer // Full-Stack Developer
                 </h2>
-                <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto leading-relaxed backdrop-blur-md bg-black/65 p-6 rounded-none border-l-4 border-orange-500 shadow-[0_0_35px_rgba(255,72,0,0.5)]">
-                    Navigating across stacks and dimensions to build high-performance intelligent systems. I craft resilient architectures, interpret complex data flows, and bridge the gap between AI and human reality.
+                <p class="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto leading-relaxed backdrop-blur-md bg-black/65 p-6 rounded-none border-l-4 border-orange-500 shadow-[0_0_35px_rgba(255,72,0,0.5)] font-medium">
+                    "I turn complex problems into practical systems through curiosity, experimentation, and relentless iteration."
                 </p>
-                <div class="mt-8 flex justify-center gap-4">
+                <div class="mt-8 flex flex-wrap justify-center gap-4">
                     <a href="#projects" class="nav-jump inline-block bg-orange-500 text-white font-anton text-xl px-8 py-3.5 border-2 border-yellow-400 shadow-[4px_4px_0_var(--spider-hotpink)] hover:bg-pink-600 hover:border-cyan-300 hover:shadow-[6px_6px_0_var(--spider-cyan)] hover:-translate-y-1 transition-all duration-200 transform -skew-x-12">
                         <span class="inline-block transform skew-x-12">EXPLORE CANON EVENTS &darr;</span>
+                    </a>
+                    <a href="#contact" class="nav-jump inline-block bg-transparent text-cyan-300 font-anton text-xl px-8 py-3.5 border-2 border-cyan-400 shadow-[4px_4px_0_var(--spider-hotpink)] hover:bg-cyan-500 hover:text-black hover:shadow-[6px_6px_0_var(--spider-yellow)] hover:-translate-y-1 transition-all duration-200 transform -skew-x-12">
+                        <span class="inline-block transform skew-x-12">TRANSMISSION COMMS &rarr;</span>
                     </a>
                 </div>
             </section>
 
-            <!-- Projects Section -->
-            <section id="projects" class="mb-32">
-                <h2 class="text-5xl md:text-7xl font-anton mb-16 text-center glitch text-white" data-text="CANON EVENTS">CANON EVENTS</h2>
+            <!-- 01 // Running Tech Stack Marquee (SYSTEM_MODULES // ARSENAL) -->
+            <section id="arsenal" class="mb-36">
+                <div class="text-center mb-10">
+                    <span class="text-xs font-mono font-bold text-orange-400 tracking-[0.25em] uppercase px-3 py-1 bg-orange-950/40 border border-orange-500/50">01 // SYSTEM_MODULES // ARSENAL</span>
+                    <h2 class="text-4xl md:text-6xl font-anton mt-3 glitch text-white" data-text="ACTIVE ARSENAL">ACTIVE ARSENAL</h2>
+                    <p class="text-sm font-mono text-cyan-300 mt-2">FULL-STACK ENGINEERING // AI ENGINEERING // MACHINE LEARNING // AGENTIC SYSTEMS</p>
+                    <p class="text-xs text-gray-400 mt-1">Hover over tickers to freeze timeline.</p>
+                </div>
+
+                <!-- Marquee Row 1 (CORE // ENGINEERING - Left Scroll) -->
+                <div class="mb-2 text-xs font-mono font-bold text-orange-400 tracking-wider px-2">ROW 01: CORE // ENGINEERING &rarr;</div>
+                <div class="marquee-container mb-6">
+                    <div class="marquee-track left" id="track-1">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Marquee Row 2 (AI // DATA // INFRA - Right Scroll) -->
+                <div class="mb-2 text-xs font-mono font-bold text-pink-400 tracking-wider px-2">&larr; ROW 02: AI // DATA // INFRA</div>
+                <div class="marquee-container mb-10">
+                    <div class="marquee-track right" id="track-2">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Extended Arsenal Badges -->
+                <div class="neon-card p-6 md:p-8">
+                    <div class="text-xs font-mono font-bold text-yellow-400 tracking-widest uppercase mb-3">// EXTENDED ARSENAL & TOOLING</div>
+                    <div class="flex flex-wrap gap-2.5">
+                        <span class="text-xs font-mono px-3 py-1.5 bg-black/60 border border-gray-700 text-gray-200">Docker</span>
+                        <span class="text-xs font-mono px-3 py-1.5 bg-black/60 border border-gray-700 text-gray-200">REST APIs</span>
+                        <span class="text-xs font-mono px-3 py-1.5 bg-black/60 border border-gray-700 text-gray-200">JWT & OAuth 2.0</span>
+                        <span class="text-xs font-mono px-3 py-1.5 bg-black/60 border border-gray-700 text-gray-200">Git & GitHub</span>
+                        <span class="text-xs font-mono px-3 py-1.5 bg-black/60 border border-gray-700 text-gray-200">SQL & Schemas</span>
+                        <span class="text-xs font-mono px-3 py-1.5 bg-black/60 border border-gray-700 text-gray-200">Firebase</span>
+                        <span class="text-xs font-mono px-3 py-1.5 bg-black/60 border border-gray-700 text-gray-200">AWS</span>
+                       
+                        <span class="text-xs font-mono px-3 py-1.5 bg-black/60 border border-pink-500/60 text-pink-300 font-semibold">scikit-learn</span>
+                       
+                        <span class="text-xs font-mono px-3 py-1.5 bg-black/60 border border-cyan-400/60 text-cyan-300 font-semibold">OpenAI API</span>
+                        <span class="text-xs font-mono px-3 py-1.5 bg-black/60 border border-cyan-400/60 text-cyan-300 font-semibold">Google Gemini API</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 02 // About Section (INITIALIZING_BIOGRAPHY...) -->
+            <section id="about" class="max-w-5xl mx-auto mb-36">
+                <div class="text-center mb-10">
+                    <span class="text-xs font-mono font-bold text-cyan-400 tracking-[0.25em] uppercase px-3 py-1 bg-cyan-950/40 border border-cyan-500/50">02 // INITIALIZING_BIOGRAPHY...</span>
+                </div>
+
+                <div class="neon-card p-8 md:p-12 relative">
+                    <!-- Tech Corner Accents -->
+                    <div class="absolute top-2 left-2 text-xs font-mono text-cyan-400">╔════</div>
+                    <div class="absolute top-2 right-2 text-xs font-mono text-cyan-400">════╗</div>
+                    <div class="absolute bottom-2 left-2 text-xs font-mono text-cyan-400">╚════</div>
+                    <div class="absolute bottom-2 right-2 text-xs font-mono text-cyan-400">════╝</div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+                        <!-- Left Avatar / Profile Badge -->
+                        <div class="md:col-span-4 text-center">
+                            <div class="relative inline-block">
+                                <div class="w-48 h-48 md:w-56 md:h-56 mx-auto rounded-none border-4 border-yellow-400 shadow-[8px_8px_0_var(--spider-hotpink)] bg-gradient-to-br from-purple-900 to-black overflow-hidden flex items-center justify-center relative">
+                                    <img src="https://ui-avatars.com/api/?name=Jagadeesh+M&background=0d0221&color=ffea00&size=512&font-size=0.35&bold=true" alt="Jagadeesh" class="w-full h-full object-cover filter contrast-125">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent"></div>
+                                    <span class="absolute bottom-3 font-anton text-sm tracking-widest text-yellow-300">EARTH-42 // IN TRAINING</span>
+                                </div>
+                                <div class="absolute -top-3 -right-3 px-3 py-1 bg-pink-600 text-white font-mono text-xs font-bold border border-yellow-300 transform rotate-6">
+                                    AI ENGINEER
+                                </div>
+                            </div>
+
+                            <div class="mt-4 p-2 bg-black/60 border border-gray-800 text-xs font-mono text-gray-400">
+                                <div>FINAL-YEAR CSE // AI & ML</div>
+                            </div>
+                        </div>
+
+                        <!-- Right Biography Content -->
+                        <div class="md:col-span-8">
+                            <h2 class="text-3xl md:text-5xl font-anton mb-3 text-white">Hi, I'm <span class="text-yellow-400 glitch" data-text="Jagadeesh">Jagadeesh</span></h2>
+                            <p class="text-base md:text-lg font-semibold text-pink-400 mb-4 font-mono">
+                                "An engineer who figures things out. I turn complex problems into practical systems through curiosity, experimentation, and relentless iteration."
+                            </p>
+                            <div class="space-y-4 text-gray-300 leading-relaxed text-sm md:text-base">
+                                <p>
+                                    My journey combines software engineering, artificial intelligence, machine learning, and full-stack development. I enjoy taking an idea from a problem statement and turning it into a working system — from designing APIs and databases to integrating LLMs, building AI pipelines, and deploying applications.
+                                </p>
+                                <p>
+                                    <strong>CURRENT FOCUS:</strong> AI Engineering (LLM apps, RAG systems, AI agents), Backend Engineering (Python/FastAPI, Node.js/Express.js), Full-Stack Architectures (React + APIs), and Machine Learning (NLP, Transformers, LoRA, Applied ML).
+                                </p>
+                                <p class="text-xs font-mono text-cyan-300 p-3 bg-black/60 border-l-4 border-cyan-400">
+                                    CORE PHILOSOPHY: LEARN &rarr; BUILD &rarr; BREAK &rarr; DEBUG &rarr; DEPLOY &rarr; ITERATE
+                                </p>
+                            </div>
+                            
+                            <!-- Stats Badges -->
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-800">
+                                <div class="p-3 bg-black/60 border border-orange-500/60">
+                                    <div class="text-xl font-anton text-yellow-400">AI ENGINEERING</div>
+                                    <div class="text-xs font-mono text-gray-400">LLMs, RAG & Agents</div>
+                                </div>
+                                <div class="p-3 bg-black/60 border border-pink-500/60">
+                                    <div class="text-xl font-anton text-pink-400">FULL-STACK DEV</div>
+                                    <div class="text-xs font-mono text-gray-400">React, Node, FastAPI</div>
+                                </div>
+                                <div class="p-3 bg-black/60 border border-cyan-500/60">
+                                    <div class="text-xl font-anton text-cyan-400">MACHINE LEARNING</div>
+                                    <div class="text-xs font-mono text-gray-400">NLP & Transformers</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 03 // Project Showcase (CANON_EVENTS // BUILT_SYSTEMS) -->
+            <section id="projects" class="mb-36">
+                <div class="text-center mb-16">
+                    <span class="text-xs font-mono font-bold text-pink-400 tracking-[0.25em] uppercase px-3 py-1 bg-pink-950/40 border border-pink-500/50">03 // CANON_EVENTS // BUILT_SYSTEMS</span>
+                    <h2 class="text-5xl md:text-7xl font-anton mt-3 glitch text-white" data-text="CANON EVENTS">CANON EVENTS</h2>
+                    <p class="text-gray-400 text-sm md:text-base mt-2">"I don't build projects just to demonstrate technologies. I build them to understand how systems actually work."</p>
+                    <p class="text-xs font-mono text-yellow-400 mt-1">CLICK ANY SYSTEM TO INSPECT ARCHITECTURE, CODE & VIDEO DEMOS</p>
+                </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     
-                    <!-- Project 1: Qgenie -->
-                    <div class="neon-card p-6 flex flex-col z-10 cursor-pointer project-card">
-                        <div class="text-xs font-bold text-cyan-400 tracking-widest uppercase mb-2">Generative AI SaaS</div>
-                        <h3 class="card-title text-3xl font-anton mb-3 text-white transition-colors glitch-hover relative">Qgenie</h3>
-                        <p class="text-sm text-gray-300 mb-6 flex-grow font-semibold leading-relaxed">
-                            An intelligent quiz and assessment generator powered by advanced NLP. Dynamically crafts contextual questions from diverse datasets across dimensions.
+                    <!-- 01 // EDUQUEST -->
+                    <div class="neon-card p-6 flex flex-col z-10 cursor-pointer project-card group" onclick="openProjectModal('eduquest')">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-mono font-bold text-orange-400 tracking-wider">01 // EDUQUEST</span>
+                            <span class="text-xs font-mono text-green-400 font-bold px-1.5 py-0.5 bg-green-950/60 border border-green-500/50">DEPLOYED / ITERATED</span>
+                        </div>
+                        <h3 class="card-title text-3xl font-anton mb-1 text-white transition-colors glitch-hover relative">EduQuest</h3>
+                        <div class="text-xs font-semibold text-yellow-400 mb-3 font-mono">AI-POWERED EDUCATIONAL PLATFORM</div>
+                        <p class="text-sm text-gray-300 mb-6 flex-grow leading-relaxed">
+                            Multi-tenant educational platform designed around AI-assisted quiz generation and student/teacher learning workflows.
                         </p>
-                        <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="text-xs font-bold bg-pink-600/30 text-pink-300 px-2.5 py-1 border border-pink-500 rounded-sm">Python</span>
-                            <span class="text-xs font-bold bg-cyan-600/30 text-cyan-300 px-2.5 py-1 border border-cyan-500 rounded-sm">React</span>
-                            <span class="text-xs font-bold bg-yellow-400/30 text-yellow-300 px-2.5 py-1 border border-yellow-400 rounded-sm">NLP</span>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-xs font-mono px-2 py-0.5 bg-black/60 border border-pink-500 text-pink-300">React</span>
+                            <span class="text-xs font-mono px-2 py-0.5 bg-black/60 border border-orange-500 text-orange-300">Node.js</span>
+                            <span class="text-xs font-mono px-2 py-0.5 bg-black/60 border border-cyan-500 text-cyan-300">PostgreSQL</span>
+                            <span class="text-xs font-mono px-2 py-0.5 bg-black/60 border border-yellow-400 text-yellow-300">LLM APIs</span>
+                        </div>
+                        <div class="pt-3 border-t border-gray-800 flex justify-between items-center text-xs font-mono text-gray-400">
+                            <span>FOCUS: MULTI-TENANCY // AI</span>
+                            <span class="text-pink-400 group-hover:underline">OPEN &rarr;</span>
                         </div>
                     </div>
 
-                    <!-- Project 2: F1 Race Replay -->
-                    <div class="neon-card p-6 flex flex-col z-10 cursor-pointer project-card">
-                        <div class="text-xs font-bold text-orange-500 tracking-widest uppercase mb-2">Data Visualization</div>
-                        <h3 class="card-title text-3xl font-anton mb-3 text-white transition-colors glitch-hover relative">F1 Race Replay</h3>
-                        <p class="text-sm text-gray-300 mb-6 flex-grow font-semibold leading-relaxed">
-                            High-speed telemetry pipeline rendering multi-dimensional F1 race data into immersive, replayable dashboards. 
+                   <!-- 02 // POCKET FILTER -->
+<div class="neon-card p-6 flex flex-col z-10 cursor-pointer project-card group"
+     onclick="openProjectModal('pocketfilter')">
+
+    <div class="flex justify-between items-start mb-2">
+        <span class="text-xs font-mono font-bold text-cyan-400 tracking-wider">
+            02 // POCKET FILTER
+        </span>
+
+        <span class="text-xs font-mono text-cyan-400 font-bold px-1.5 py-0.5
+                     bg-cyan-950/60 border border-cyan-500/50">
+            BUILT
+        </span>
+    </div>
+
+    <h3 class="card-title text-3xl font-anton mb-1 text-white
+               transition-colors glitch-hover relative">
+        Pocket Filter
+    </h3>
+
+    <div class="text-xs font-semibold text-cyan-300 mb-3 font-mono">
+        INTELLIGENT FILTERING / DATA APPLICATION
+    </div>
+
+    <p class="text-sm text-gray-300 mb-6 flex-grow leading-relaxed">
+        An intelligent filtering application designed to process and organize
+        information, transforming raw data into a structured and more useful
+        user experience.
+    </p>
+
+    <div class="flex flex-wrap gap-1.5 mb-6">
+        <span class="text-xs font-mono px-2 py-0.5 bg-black/60
+                     border border-cyan-500 text-cyan-300">
+            Data Processing
+        </span>
+
+        <span class="text-xs font-mono px-2 py-0.5 bg-black/60
+                     border border-yellow-500 text-yellow-300">
+            Filtering Logic
+        </span>
+
+        <span class="text-xs font-mono px-2 py-0.5 bg-black/60
+                     border border-pink-500 text-pink-300">
+            Information Discovery
+        </span>
+    </div>
+
+    <div class="pt-3 border-t border-gray-800 flex justify-between
+                items-center text-xs font-mono text-gray-400">
+
+        <span>FOCUS: DATA PROCESSING</span>
+
+        <span class="text-cyan-400 group-hover:underline">
+            OPEN →
+        </span>
+    </div>
+
+</div>
+                    <!-- 03 // PINPLOT -->
+                    <div class="neon-card p-6 flex flex-col z-10 cursor-pointer project-card group" onclick="openProjectModal('pinplot')">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-mono font-bold text-yellow-400 tracking-wider">03 // PINPLOT</span>
+                            <span class="text-xs font-mono text-yellow-400 font-bold px-1.5 py-0.5 bg-yellow-950/60 border border-yellow-500/50">BUILT</span>
+                        </div>
+                        <h3 class="card-title text-3xl font-anton mb-1 text-white transition-colors glitch-hover relative">PinPlot</h3>
+                        <div class="text-xs font-semibold text-yellow-300 mb-3 font-mono">DATA VISUALIZATION APPLICATION</div>
+                        <p class="text-sm text-gray-300 mb-6 flex-grow leading-relaxed">
+                            Application centered around transforming information into interactive visual representations and user-driven exploration.
                         </p>
-                        <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="text-xs font-bold bg-pink-600/30 text-pink-300 px-2.5 py-1 border border-pink-500 rounded-sm">D3.js</span>
-                            <span class="text-xs font-bold bg-cyan-600/30 text-cyan-300 px-2.5 py-1 border border-cyan-500 rounded-sm">Pandas</span>
-                            <span class="text-xs font-bold bg-yellow-400/30 text-yellow-300 px-2.5 py-1 border border-yellow-400 rounded-sm">WebSockets</span>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-xs font-mono px-2 py-0.5 bg-black/60 border border-yellow-500 text-yellow-300">Visualization</span>
+                            <span class="text-xs font-mono px-2 py-0.5 bg-black/60 border border-orange-500 text-orange-300">Frontend</span>
+                            <span class="text-xs font-mono px-2 py-0.5 bg-black/60 border border-cyan-500 text-cyan-300">Full-Stack</span>
+                        </div>
+                        <div class="pt-3 border-t border-gray-800 flex justify-between items-center text-xs font-mono text-gray-400">
+                            <span>FOCUS: DATA & VISUALS</span>
+                            <span class="text-yellow-400 group-hover:underline">OPEN &rarr;</span>
                         </div>
                     </div>
 
-                    <!-- Project 3: ABSA Pipeline -->
-                    <div class="neon-card p-6 flex flex-col z-10 cursor-pointer project-card">
-                        <div class="text-xs font-bold text-pink-500 tracking-widest uppercase mb-2">Machine Learning</div>
-                        <h3 class="card-title text-3xl font-anton mb-3 text-white transition-colors glitch-hover relative">ABSA Pipeline</h3>
-                        <p class="text-sm text-gray-300 mb-6 flex-grow font-semibold leading-relaxed">
-                            Aspect-Based Sentiment Analysis pipeline capable of dissecting chaotic multiversal feedback streams into highly structured emotional insights.
+                    <!-- 04 // F1 REPLAY -->
+                    <div class="neon-card p-6 flex flex-col z-10 cursor-pointer project-card group" onclick="openProjectModal('f1replay')">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-mono font-bold text-red-500 tracking-wider">04 // F1 REPLAY</span>
+                            <span class="text-xs font-mono text-orange-400 font-bold px-1.5 py-0.5 bg-orange-950/60 border border-orange-500/50">IN DEVELOPMENT</span>
+                        </div>
+                        <h3 class="card-title text-3xl font-anton mb-1 text-white transition-colors glitch-hover relative">F1 Replay</h3>
+                        <div class="text-xs font-semibold text-red-400 mb-3 font-mono">TELEMETRY & RACE VISUALIZATION</div>
+                        <p class="text-sm text-gray-300 mb-6 flex-grow leading-relaxed">
+                            Formula 1 race visualization platform built around historical telemetry data, driver positioning, and Canvas replays.
                         </p>
-                        <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="text-xs font-bold bg-pink-600/30 text-pink-300 px-2.5 py-1 border border-pink-500 rounded-sm">PyTorch</span>
-                            <span class="text-xs font-bold bg-cyan-600/30 text-cyan-300 px-2.5 py-1 border border-cyan-500 rounded-sm">Transformers</span>
-                            <span class="text-xs font-bold bg-yellow-400/30 text-yellow-300 px-2.5 py-1 border border-yellow-400 rounded-sm">FastAPI</span>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-xs font-mono px-2 py-0.5 bg-black/60 border border-red-500 text-red-300">Python</span>
+                            <span class="text-xs font-mono px-2 py-0.5 bg-black/60 border border-orange-500 text-orange-300">FastAPI</span>
+                            <span class="text-xs font-mono px-2 py-0.5 bg-black/60 border border-yellow-500 text-yellow-300">FastF1</span>
+                            <span class="text-xs font-mono px-2 py-0.5 bg-black/60 border border-cyan-500 text-cyan-300">Canvas</span>
+                        </div>
+                        <div class="pt-3 border-t border-gray-800 flex justify-between items-center text-xs font-mono text-gray-400">
+                            <span>FOCUS: REAL-TIME TELEMETRY</span>
+                            <span class="text-red-400 group-hover:underline">OPEN &rarr;</span>
+                        </div>
+                    </div>
+
+                    <!-- 05 // ABSA -->
+                    <div class="neon-card p-6 flex flex-col z-10 cursor-pointer project-card group" onclick="openProjectModal('absa')">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-mono font-bold text-pink-500 tracking-wider">05 // ABSA</span>
+                            <span class="text-xs font-mono text-purple-400 font-bold px-1.5 py-0.5 bg-purple-950/60 border border-purple-500/50">RESEARCH / ML</span>
+                        </div>
+                        <h3 class="card-title text-3xl font-anton mb-1 text-white transition-colors glitch-hover relative">ABSA Pipeline</h3>
+                        <div class="text-xs font-semibold text-pink-400 mb-3 font-mono">ASPECT-BASED SENTIMENT ANALYSIS</div>
+                        <p class="text-sm text-gray-300 mb-6 flex-grow leading-relaxed">
+                            NLP pipeline dissecting sentiment from food-vlog speech by combining Whisper speech-to-text with fine-tuned BERT models.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-xs font-mono px-2 py-0.5 bg-black/60 border border-pink-500 text-pink-300">Whisper</span>
+                            <span class="text-xs font-mono px-2 py-0.5 bg-black/60 border border-yellow-500 text-yellow-300">BERT/DistilBERT</span>
+                            <span class="text-xs font-mono px-2 py-0.5 bg-black/60 border border-orange-500 text-orange-300">LoRA</span>
+                            <span class="text-xs font-mono px-2 py-0.5 bg-black/60 border border-cyan-500 text-cyan-300">Python</span>
+                        </div>
+                        <div class="pt-3 border-t border-gray-800 flex justify-between items-center text-xs font-mono text-gray-400">
+                            <span>FOCUS: SPEECH TO SENTIMENT</span>
+                            <span class="text-pink-400 group-hover:underline">OPEN &rarr;</span>
+                        </div>
+                    </div>
+
+                    <!-- 06 // REPLATE -->
+                    <div class="neon-card p-6 flex flex-col z-10 cursor-pointer project-card group" onclick="openProjectModal('replate')">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-mono font-bold text-green-400 tracking-wider">06 // REPLATE</span>
+                            <span class="text-xs font-mono text-green-400 font-bold px-1.5 py-0.5 bg-green-950/60 border border-green-500/50">BUILT</span>
+                        </div>
+                        <h3 class="card-title text-3xl font-anton mb-1 text-white transition-colors glitch-hover relative">RePlate</h3>
+                        <div class="text-xs font-semibold text-green-300 mb-3 font-mono">FOOD WASTE MANAGEMENT SYSTEM</div>
+                        <p class="text-sm text-gray-300 mb-6 flex-grow leading-relaxed">
+                            Full-stack application designed to reduce food waste and connect available food resources with communities.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
+                            <span class="text-xs font-mono px-2 py-0.5 bg-black/60 border border-green-500 text-green-300">MongoDB</span>
+                            <span class="text-xs font-mono px-2 py-0.5 bg-black/60 border border-orange-500 text-orange-300">Express.js</span>
+                            <span class="text-xs font-mono px-2 py-0.5 bg-black/60 border border-cyan-500 text-cyan-300">React</span>
+                            <span class="text-xs font-mono px-2 py-0.5 bg-black/60 border border-pink-500 text-pink-300">Node.js</span>
+                        </div>
+                        <div class="pt-3 border-t border-gray-800 flex justify-between items-center text-xs font-mono text-gray-400">
+                            <span>FOCUS: FULL-STACK & DATABASE</span>
+                            <span class="text-green-400 group-hover:underline">OPEN &rarr;</span>
                         </div>
                     </div>
 
                 </div>
             </section>
 
+            <!-- 04 // AI & Engineering Capabilities (AI_SYSTEMS // CAPABILITIES) -->
+            <section id="capabilities" class="max-w-6xl mx-auto mb-36">
+                <div class="text-center mb-16">
+                    <span class="text-xs font-mono font-bold text-yellow-400 tracking-[0.25em] uppercase px-3 py-1 bg-yellow-950/40 border border-yellow-500/50">04 // AI_SYSTEMS // CAPABILITIES</span>
+                    <h2 class="text-4xl md:text-6xl font-anton mt-3 glitch text-white" data-text="CAPABILITY MATRIX">CAPABILITY MATRIX</h2>
+                    <p class="text-sm text-gray-400 mt-2">Not just technologies, but the engineering capabilities I apply to real problems.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Capability 01 -->
+                    <div class="neon-card p-6">
+                        <div class="text-xs font-mono text-cyan-400 font-bold mb-1">01 // AI ENGINEERING</div>
+                        <h4 class="font-anton text-xl text-white mb-3">BUILDING WITH INTELLIGENCE</h4>
+                        <ul class="text-xs font-mono text-gray-300 space-y-1.5 mb-4">
+                            <li>• LLM API integration & Prompt Eng.</li>
+                            <li>• Structured LLM outputs</li>
+                            <li>• RAG & Document Q&A</li>
+                            <li>• Embeddings & Vector Search</li>
+                            <li>• AI Agents & Tool-Calling</li>
+                            <li>• Agentic Workflows & Architecture</li>
+                        </ul>
+                        <div class="text-[10px] font-mono text-yellow-300 p-2 bg-black/60 border border-yellow-500/40">
+                            TARGET: LLM &rarr; TOOLS &rarr; MEMORY &rarr; RETRIEVAL &rarr; ACTION
+                        </div>
+                    </div>
+
+                    <!-- Capability 02 -->
+                    <div class="neon-card p-6">
+                        <div class="text-xs font-mono text-pink-400 font-bold mb-1">02 // MACHINE LEARNING</div>
+                        <h4 class="font-anton text-xl text-white mb-3">DATA TO PREDICTIONS</h4>
+                        <ul class="text-xs font-mono text-gray-300 space-y-1.5 mb-4">
+                            <li>• Data Preprocessing & EDA</li>
+                            <li>• Feature Engineering</li>
+                            <li>• Supervised / Unsupervised ML</li>
+                            <li>• Model Evaluation Metrics</li>
+                            <li>• Transformers</li>
+                            <li>• LoRA / Parameter-Efficient Tuning</li>
+                        </ul>
+                        <div class="text-[10px] font-mono text-pink-300 p-2 bg-black/60 border border-pink-500/40">
+                            TARGET: DATA &rarr; FEATURES &rarr; MODEL &rarr; EVALUATION &rarr; ITERATE
+                        </div>
+                    </div>
+
+                    <!-- Capability 03 -->
+                    <div class="neon-card p-6">
+                        <div class="text-xs font-mono text-orange-400 font-bold mb-1">03 // BACKEND ENGINEERING</div>
+                        <h4 class="font-anton text-xl text-white mb-3">SYSTEM BEHIND THE SYSTEM</h4>
+                        <ul class="text-xs font-mono text-gray-300 space-y-1.5 mb-4">
+                            <li>• REST API Design & Docs</li>
+                            <li>• Python / FastAPI & Node / Express</li>
+                            <li>• Auth, JWT, OAuth 2.0</li>
+                            <li>• Middleware & Service Architecture</li>
+                            <li>• Error Handling & Validation</li>
+                            <li>• Transactions, Security & Caching</li>
+                        </ul>
+                        <div class="text-[10px] font-mono text-orange-300 p-2 bg-black/60 border border-orange-500/40">
+                            TARGET: CLIENT &rarr; API &rarr; LOGIC &rarr; DB &rarr; SCALE
+                        </div>
+                    </div>
+
+                    <!-- Capability 04 -->
+                    <div class="neon-card p-6">
+                        <div class="text-xs font-mono text-yellow-400 font-bold mb-1">04 // DATABASE & DATA</div>
+                        <h4 class="font-anton text-xl text-white mb-3">INFORMATION ARCHITECTURE</h4>
+                        <ul class="text-xs font-mono text-gray-300 space-y-1.5 mb-4">
+                            <li>• PostgreSQL, MySQL, SQLite</li>
+                            <li>• MongoDB Document Stores</li>
+                            <li>• Schema Design & Relationships</li>
+                            <li>• Query Optimization & Indexing</li>
+                            <li>• Redis Caching & In-Memory</li>
+                            <li>• Connection Pooling</li>
+                        </ul>
+                        <div class="text-[10px] font-mono text-yellow-300 p-2 bg-black/60 border border-yellow-500/40">
+                            TARGET: DATA MODEL &rarr; QUERY &rarr; CACHE &rarr; SCALE
+                        </div>
+                    </div>
+
+                    <!-- Capability 05 -->
+                    <div class="neon-card p-6">
+                        <div class="text-xs font-mono text-green-400 font-bold mb-1">05 // FULL-STACK DEV</div>
+                        <h4 class="font-anton text-xl text-white mb-3">INTERFACE TO INFRA</h4>
+                        <ul class="text-xs font-mono text-gray-300 space-y-1.5 mb-4">
+                            <li>• React & Modern Hooks</li>
+                            <li>• TypeScript & JavaScript</li>
+                            <li>• REST API Client Integration</li>
+                            <li>• State Management & Auth Flows</li>
+                            <li>• Responsive Dynamic Layouts</li>
+                            <li>• Interactive Canvas & Visuals</li>
+                        </ul>
+                        <div class="text-[10px] font-mono text-green-300 p-2 bg-black/60 border border-green-500/40">
+                            TARGET: UI &rarr; FRONTEND &rarr; API &rarr; BACKEND &rarr; DB
+                        </div>
+                    </div>
+
+                    <!-- Capability 06 -->
+                    <div class="neon-card p-6">
+                        <div class="text-xs font-mono text-cyan-400 font-bold mb-1">06 // AI DATA PIPELINES</div>
+                        <h4 class="font-anton text-xl text-white mb-3">RAW DATA TO INTEL</h4>
+                        <ul class="text-xs font-mono text-gray-300 space-y-1.5 mb-4">
+                            <li>• PDF/Document Ingestion</li>
+                            <li>• Text Extraction & Chunking</li>
+                            <li>• Audio & Speech-to-Text (Whisper)</li>
+                            <li>• Embeddings & Vector Stores</li>
+                            <li>• NLP Sentiment Extraction</li>
+                            <li>• Low-Latency Inference</li>
+                        </ul>
+                        <div class="text-[10px] font-mono text-cyan-300 p-2 bg-black/60 border border-cyan-500/40">
+                            TARGET: RAW &rarr; PROCESS &rarr; EMBED &rarr; INFER
+                        </div>
+                    </div>
+
+                    <!-- Capability 07 -->
+                    <div class="neon-card p-6">
+                        <div class="text-xs font-mono text-purple-400 font-bold mb-1">07 // SYSTEM THINKING</div>
+                        <h4 class="font-anton text-xl text-white mb-3">DECOMPOSE & SOLVE</h4>
+                        <p class="text-xs font-mono text-gray-300 mb-2">
+                            PROBLEM &rarr; DECOMPOSE &rarr; CONSTRAINTS &rarr; DESIGN &rarr; IMPLEMENT &rarr; TEST &rarr; DEPLOY
+                        </p>
+                        <div class="text-[11px] font-mono text-purple-300 italic p-2 bg-black/60 border border-purple-500/40">
+                            "If I don't know how something works, I figure it out."
+                        </div>
+                    </div>
+
+                    <!-- Capability 08 -->
+                    <div class="neon-card p-6 border-cyan-400">
+                        <div class="text-xs font-mono text-cyan-400 font-bold mb-1">08 // CURRENTLY EXPLORING</div>
+                        <h4 class="font-anton text-xl text-white mb-3">NEXT SYSTEMS LOADING</h4>
+                        <ul class="text-xs font-mono text-gray-300 space-y-1.5 mb-4">
+                            <li>• Advanced Agentic Architectures</li>
+                            <li>• Multi-Agent Coordination</li>
+                            <li>• AI Memory Systems</li>
+                            <li>• LLM Evaluation Frameworks</li>
+                            <li>• Production AI Deployment</li>
+                            <li>• Distributed Systems</li>
+                        </ul>
+                        <div class="text-[10px] font-mono text-cyan-300 p-2 bg-black/60 border border-cyan-500/40">
+                            STATUS: LEARNING // EXPERIMENTING // BUILDING
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- 05 // Engineering Journey (EVOLUTION_LOG // SYSTEM_UPGRADE) -->
+            <section id="evolution" class="max-w-4xl mx-auto mb-36">
+                <div class="text-center mb-16">
+                    <span class="text-xs font-mono font-bold text-orange-400 tracking-[0.25em] uppercase px-3 py-1 bg-orange-950/40 border border-orange-500/50">05 // EVOLUTION_LOG // SYSTEM_UPGRADE</span>
+                    <h2 class="text-4xl md:text-6xl font-anton mt-3 glitch text-white" data-text="ENGINEERING JOURNEY">ENGINEERING JOURNEY</h2>
+                    <p class="text-sm text-gray-400 mt-2">Evolution from software fundamentals toward AI engineering and autonomous agentic systems.</p>
+                </div>
+
+                <!-- Timeline Nodes -->
+                <div class="space-y-8 relative">
+                    <div class="timeline-line hidden md:block"></div>
+
+                    <!-- Stage 01 -->
+                    <div class="neon-card p-6 md:p-8">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-mono font-bold text-orange-400">01 // FOUNDATION</span>
+                            <span class="text-xs font-mono text-gray-400">LEARNING TO BUILD</span>
+                        </div>
+                        <h3 class="font-anton text-2xl text-white mb-2">Core CS & Software Fundamentals</h3>
+                        <p class="text-sm text-gray-300 mb-3">Python, JavaScript, HTML, CSS, SQL, Data Structures & Algorithms, Object-Oriented Programming, Git/GitHub.</p>
+                        <div class="text-xs font-mono text-yellow-400">STATUS: FOUNDATION ESTABLISHED</div>
+                    </div>
+
+                    <!-- Stage 02 -->
+                    <div class="neon-card p-6 md:p-8">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-mono font-bold text-pink-400">02 // FULL-STACK DEVELOPMENT</span>
+                            <span class="text-xs font-mono text-gray-400">COMPLETE APPLICATIONS</span>
+                        </div>
+                        <h3 class="font-anton text-2xl text-white mb-2">Turning Ideas into Working Products</h3>
+                        <p class="text-sm text-gray-300 mb-3">React, Node.js, Express.js, REST APIs, PostgreSQL, MongoDB, Authentication & Authorization.</p>
+                        <div class="text-xs font-mono text-pink-400">MILESTONE PROJECTS: REPLATE // EDUQUEST // PINPLOT</div>
+                    </div>
+
+                    <!-- Stage 03 -->
+                    <div class="neon-card p-6 md:p-8">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-mono font-bold text-yellow-400">03 // BACKEND & SYSTEM ARCHITECTURE</span>
+                            <span class="text-xs font-mono text-gray-400">BEHIND THE UI</span>
+                        </div>
+                        <h3 class="font-anton text-2xl text-white mb-2">Engineering Systems for Scale</h3>
+                        <p class="text-sm text-gray-300 mb-3">Layered architecture, service/repository patterns, PostgreSQL, Redis caching, API security, transactions, Docker.</p>
+                        <div class="text-xs font-mono text-yellow-400">DIRECTIVE: BUILD SYSTEMS THAT CAN ACTUALLY SUPPORT REAL PRODUCTION USAGE</div>
+                    </div>
+
+                    <!-- Stage 04 -->
+                    <div class="neon-card p-6 md:p-8">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-mono font-bold text-cyan-400">04 // MACHINE LEARNING</span>
+                            <span class="text-xs font-mono text-gray-400">SOFTWARE TO INTELLIGENCE</span>
+                        </div>
+                        <h3 class="font-anton text-2xl text-white mb-2">Making Software Learn from Data</h3>
+                        <p class="text-sm text-gray-300 mb-3">NumPy, Pandas, scikit-learn, Machine Learning, Deep Learning, NLP, Model Evaluation, Data Preprocessing.</p>
+                        <div class="text-xs font-mono text-cyan-400">MILESTONE PROJECT: ABSA (ASPECT-BASED SENTIMENT ANALYSIS)</div>
+                    </div>
+
+                    <!-- Stage 05 -->
+                    <div class="neon-card p-6 md:p-8">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-mono font-bold text-orange-400">05 // AI ENGINEERING</span>
+                            <span class="text-xs font-mono text-gray-400">FOUNDATION MODELS</span>
+                        </div>
+                        <h3 class="font-anton text-2xl text-white mb-2">Foundation Models into Useful Systems</h3>
+                        <p class="text-sm text-gray-300 mb-3">LLM APIs, Generative AI, Prompt Engineering, Document Processing, RAG, Embeddings, Vector Search.</p>
+                        <div class="text-xs font-mono text-orange-400">MILESTONE PROJECTS: EDUQUEST // AI APPLICATIONS</div>
+                    </div>
+
+                    <!-- Stage 06 & 07 -->
+                    <div class="neon-card p-6 md:p-8 border-yellow-400">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-mono font-bold text-yellow-400">06-07 // INTELLIGENT & AGENTIC SYSTEMS</span>
+                            <span class="text-xs font-mono text-cyan-400">NEXT EVOLUTION</span>
+                        </div>
+                        <h3 class="font-anton text-2xl text-white mb-2">Systems that Reason &rarr; Act &rarr; Observe &rarr; Iterate</h3>
+                        <p class="text-sm text-gray-300 mb-4">Combining software engineering, machine learning, LLMs, and distributed systems into intelligent autonomous software.</p>
+                        
+                        <!-- Terminal Progress Bars -->
+                        <div class="p-4 bg-black/70 border border-gray-800 font-mono text-xs space-y-2">
+                            <div class="flex justify-between"><span>FULL-STACK DEVELOPMENT</span><span class="text-yellow-400">████████████████</span></div>
+                            <div class="flex justify-between"><span>SOFTWARE ENGINEERING</span><span class="text-yellow-400">███████████████</span></div>
+                            <div class="flex justify-between"><span>BACKEND ENGINEERING</span><span class="text-orange-400">█████████████</span></div>
+                            <div class="flex justify-between"><span>AI ENGINNEERING</span><span class="text-pink-400">███████████</span></div>
+                            <div class="flex justify-between"><span>MACHINE LEARNING</span><span class="text-cyan-400">█████████</span></div>
+                           
+                        </div>
+
+                        <div class="mt-4 text-xs font-mono text-yellow-300">
+                            DIRECTIVE: LEARN DEEPLY // BUILD CONSTANTLY // UNDERSTAND THE SYSTEM
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 06 // Contact & Transmission Hub (COMMS // TRANSMISSION) -->
+            <section id="contact" class="max-w-5xl mx-auto mb-28">
+                <div class="text-center mb-16">
+                    <span class="text-xs font-mono font-bold text-cyan-400 tracking-[0.25em] uppercase px-3 py-1 bg-cyan-950/40 border border-cyan-500/50">06 // COMMS // TRANSMISSION</span>
+                    <h2 class="text-4xl md:text-6xl font-anton mt-3 glitch text-white" data-text="COMMUNICATION TERMINAL">COMMUNICATION TERMINAL</h2>
+                    <p class="text-gray-400 text-sm mt-2">"Have a problem worth solving? Let's figure it out."</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+                    <!-- Contact Info Cards -->
+                    <div class="md:col-span-5 space-y-5">
+                        
+                        <!-- Direct Email -->
+                        <a href="mailto:jagagadeeshmarlapati85@gmail.com" class="neon-card p-5 block group">
+                            <div class="flex items-center gap-4">
+                                <div class="text-3xl p-3 bg-orange-500/20 border border-orange-500 text-orange-400">📧</div>
+                                <div class="overflow-hidden">
+                                    <div class="text-xs font-mono text-gray-400 uppercase tracking-widest">DIRECT_CHANNEL // EMAIL</div>
+                                    <div class="text-sm md:text-base font-bold text-white group-hover:text-yellow-400 transition-colors truncate">jagagadeeshmarlapati85@gmail.com</div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/in/jagadeesh-marlapati/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" class="neon-card p-5 block group">
+                            <div class="flex items-center gap-4">
+                                <div class="text-3xl p-3 bg-pink-500/20 border border-pink-500 text-pink-400 font-anton">in</div>
+                                <div>
+                                    <div class="text-xs font-mono text-gray-400 uppercase tracking-widest">PROFESSIONAL_NETWORK</div>
+                                    <div class="text-base md:text-lg font-bold text-white group-hover:text-pink-400 transition-colors">LINKEDIN // JAGADEESH &rarr;</div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- GitHub -->
+                        <a href="https://github.com/Jaggu2m?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" class="neon-card p-5 block group">
+                            <div class="flex items-center gap-4">
+                                <div class="text-3xl p-3 bg-cyan-500/20 border border-cyan-500 text-cyan-400 font-anton">&lt;/&gt;</div>
+                                <div>
+                                    <div class="text-xs font-mono text-gray-400 uppercase tracking-widest">CODE_REPOSITORY</div>
+                                    <div class="text-base md:text-lg font-bold text-white group-hover:text-cyan-300 transition-colors">GITHUB // JAGGU2M &rarr;</div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- System Availability Box -->
+                        <div class="p-4 bg-black/70 border border-gray-800 text-xs font-mono space-y-1.5 text-gray-300">
+                            <div class="text-yellow-400 font-bold mb-1">// SYSTEM AVAILABILITY</div>
+                            <div class="flex justify-between"><span>STATUS:</span><span class="text-green-400 font-bold">ONLINE</span></div>
+                            <div class="flex justify-between"><span>RESPONSE:</span><span class="text-cyan-300">ACTIVE</span></div>
+                            <div class="flex justify-between"><span>LOCATION:</span><span>INDIA</span></div>
+                            <div class="flex justify-between"><span>MODE:</span><span class="text-yellow-300">OPEN TO OPPORTUNITIES</span></div>
+                        </div>
+
+                    </div>
+
+                    <!-- Interactive Form -->
+                    <div class="md:col-span-7">
+                        <div class="neon-card p-8 relative">
+                            <div class="text-xs font-mono text-cyan-400 font-bold mb-4 tracking-widest">// TRANSMISSION_TERMINAL</div>
+                            
+                            <div id="form-container">
+                                <form id="comms-form" class="space-y-6">
+                                    <div>
+                                        <label class="block text-xs font-mono text-cyan-400 font-bold mb-2 tracking-widest">IDENTITY / NAME &gt;</label>
+                                        <input type="text" id="form-name" required placeholder="Recruiter, Engineer, Collaborator..." class="w-full bg-black/60 border-2 border-gray-700 focus:border-yellow-400 px-4 py-3 text-white font-mono text-sm outline-none transition-colors">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-mono text-cyan-400 font-bold mb-2 tracking-widest">COMMS / EMAIL &gt;</label>
+                                        <input type="email" id="form-email" required placeholder="name@company.com or personal email" class="w-full bg-black/60 border-2 border-gray-700 focus:border-yellow-400 px-4 py-3 text-white font-mono text-sm outline-none transition-colors">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-mono text-cyan-400 font-bold mb-2 tracking-widest">PAYLOAD / MESSAGE &gt;</label>
+                                        <textarea id="form-message" required rows="4" placeholder="Detail your project, engineering role, or collaboration parameter..." class="w-full bg-black/60 border-2 border-gray-700 focus:border-yellow-400 px-4 py-3 text-white font-mono text-sm outline-none transition-colors"></textarea>
+                                    </div>
+                                    <button type="submit" class="w-full bg-gradient-to-r from-orange-500 via-pink-600 to-yellow-400 text-white font-anton text-xl py-4 border-2 border-yellow-300 shadow-[6px_6px_0_var(--spider-cyan)] hover:opacity-95 hover:shadow-[8px_8px_0_var(--spider-hotpink)] hover:-translate-y-1 transition-all duration-200 cursor-pointer transform -skew-x-6">
+                                        <span class="inline-block transform skew-x-6">TRANSMIT_SIGNAL &rarr;</span>
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- Terminal Success State -->
+                            <div id="success-state" class="hidden py-8 font-mono text-xs space-y-3 bg-black/80 p-6 border border-green-500 text-green-400">
+                                <div class="text-yellow-400 text-base font-bold">// TRANSMISSION LOG:</div>
+                                <div>&gt; ESTABLISHING CONNECTION...</div>
+                                <div>&gt; ENCRYPTING PAYLOAD...</div>
+                                <div>&gt; TRANSMITTING TO JAGADEESH...</div>
+                                <div>&gt; SIGNAL RECEIVED.</div>
+                                <div class="text-sm font-bold text-white pt-2">&gt; TRANSMISSION_COMPLETE &#10003;</div>
+                                <p class="text-gray-300 pt-2 font-sans">
+                                    Thank you. Your message has been routed to jagagadeeshmarlapati85@gmail.com successfully.
+                                </p>
+                                <button type="button" onclick="resetCommsForm()" class="mt-4 px-4 py-2 bg-pink-600 text-white font-anton text-sm border border-yellow-400 cursor-pointer">
+                                    TRANSMIT ANOTHER MESSAGE
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Footer -->
-            <footer id="contact" class="text-center pb-12 pt-24 relative mt-auto border-t border-gray-800/60">
-                <h2 class="text-3xl font-anton mb-8 text-white glitch" data-text="READY TO JUMP DIMENSIONS?">READY TO JUMP DIMENSIONS?</h2>
-                <a href="mailto:engineer@spider-verse.local" id="initiate-btn" class="inline-block bg-pink-600 text-white font-bold font-anton text-2xl px-10 py-4 rounded-none border-4 border-pink-400 shadow-[6px_6px_0_var(--spider-cyan)] hover:bg-orange-500 hover:border-yellow-300 hover:shadow-[8px_8px_0_var(--spider-yellow)] hover:-translate-y-1 transition-all duration-200 transform -skew-x-12 cursor-pointer">
-                    <span class="inline-block transform skew-x-12">INITIATE SEQUENCE</span>
-                </a>
-                <p class="mt-16 text-xs text-gray-500 tracking-[0.2em] font-bold">© 2026 AI/ML ENGINEER. EARTH-42.</p>
+            <footer class="text-center pb-12 pt-16 border-t border-gray-800/60 relative">
+                <div class="text-2xl font-anton text-white mb-2">JAGADEESH // SYSTEM ONLINE</div>
+                <div class="flex justify-center gap-6 text-xs font-mono text-gray-400 mb-4">
+                    <a href="mailto:jagagadeeshmarlapati85@gmail.com" class="hover:text-yellow-400">EMAIL</a>
+                    <span>//</span>
+                    <a href="https://www.linkedin.com/in/jagadeesh-marlapati/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" class="hover:text-pink-400">LINKEDIN</a>
+                    <span>//</span>
+                    <a href="https://github.com/Jaggu2m?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-400">GITHUB</a>
+                </div>
+                <p class="text-xs text-gray-600 font-mono">© 2026 JAGADEESH // EARTH-42. ALL DIMENSIONAL RIGHTS RESERVED.</p>
             </footer>
 
         </main>
     </div>
 
-    <!-- Scroll & Transition-Driven Across-the-Spider-Verse 120 FPS Engine -->
+    <!-- Interactive Project Modal Component -->
+    <div id="project-modal" class="project-modal-backdrop" onclick="closeProjectModalOnBackdrop(event)">
+        <div class="project-modal-box p-6 md:p-10 relative">
+            <!-- Close Button -->
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 bg-pink-600 hover:bg-orange-500 text-white font-anton px-4 py-2 border-2 border-yellow-400 cursor-pointer transition-colors z-20">
+                [X] CLOSE
+            </button>
+
+            <!-- Modal Header -->
+            <div class="mb-6">
+                <div class="flex items-center gap-3 mb-1">
+                    <span id="modal-id" class="text-xs font-mono font-bold text-orange-400 tracking-widest uppercase px-2 py-0.5 bg-orange-950/60 border border-orange-500/50">ID</span>
+                    <span id="modal-status" class="text-xs font-mono font-bold text-green-400 tracking-widest uppercase px-2 py-0.5 bg-green-950/60 border border-green-500/50">STATUS</span>
+                </div>
+                <h2 id="modal-title" class="text-4xl md:text-5xl font-anton text-white mt-2 glitch" data-text="PROJECT TITLE">PROJECT TITLE</h2>
+                <div id="modal-subtitle" class="text-base font-mono font-semibold text-yellow-400">Subtitle</div>
+            </div>
+
+            <!-- Video Player Area -->
+            <div id="modal-video-container" class="mb-8 border-2 border-yellow-400 shadow-[6px_6px_0_var(--spider-hotpink)] bg-black overflow-hidden relative">
+                <video id="modal-video" controls loop muted playsinline class="w-full max-h-[420px] object-contain bg-black">
+                    <source id="modal-video-source" src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div id="modal-video-placeholder" class="hidden p-12 text-center bg-black/90 font-mono text-gray-400 text-xs">
+                    <div class="text-3xl text-yellow-400 mb-2">📹</div>
+                    <div>[ PROJECT DEMO VIDEO // FEED READY ]</div>
+                    <div class="text-[10px] text-gray-500 mt-1">Video stream slot active for demo upload</div>
+                </div>
+            </div>
+
+            <!-- Problem Statement Callout -->
+            <div class="mb-6 p-5 bg-black/60 border-l-4 border-yellow-400">
+                <div class="text-xs font-mono text-yellow-400 font-bold uppercase mb-1">ENGINEERING FOCUS & PROBLEM</div>
+                <div id="modal-focus" class="text-xs font-mono text-cyan-300 font-bold mb-2">FOCUS AREA</div>
+                <p id="modal-problem" class="text-gray-300 text-sm leading-relaxed">Detailed problem statement...</p>
+            </div>
+
+            <!-- Solution Overview & Core System -->
+            <div class="mb-6">
+                <div class="text-xs font-mono text-cyan-400 font-bold uppercase mb-2">CORE SYSTEM & ARCHITECTURE</div>
+                <div id="modal-solution" class="text-gray-200 text-sm leading-relaxed space-y-2 whitespace-pre-line font-mono bg-black/40 p-4 border border-gray-800">
+                    Solution text...
+                </div>
+            </div>
+
+            <!-- Tech Stack & Links -->
+            <div class="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-gray-800">
+                <div>
+                    <div class="text-xs font-mono text-gray-400 uppercase mb-2">TECHNOLOGIES & AI STACK:</div>
+                    <div id="modal-tags" class="flex flex-wrap gap-2">
+                        <!-- Dynamic Tags -->
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <a id="modal-github" href="https://github.com/Jaggu2m?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" class="inline-block bg-pink-600 hover:bg-orange-500 text-white font-anton text-lg px-6 py-2.5 border-2 border-yellow-300 shadow-[4px_4px_0_var(--spider-cyan)] transition-all">
+                        VIEW ON GITHUB &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dynamic JavaScript: Marquee, Modal & High-Performance Multiverse Tunnel Engine -->
     <script>
+        // --- Exact Tech Stack Items from Jagadeesh Specification ---
+        const techStackRow1 = [
+            "Python", "JavaScript", "TypeScript", "Java", "React", "Node.js",
+            "Express.js", "FastAPI", "HTML", "CSS"
+        ];
+
+        const techStackRow2 = [
+            "Machine Learning", "NLP", "LLM APIs", "Generative AI",
+            "RAG", "LangChain", "Pandas", "NumPy", "PostgreSQL", "MongoDB", "Redis"
+        ];
+
+        // Populate Running Tech Stack Marquee (Cloned for seamless infinite scroll)
+        function initMarquee() {
+            const track1 = document.getElementById('track-1');
+            const track2 = document.getElementById('track-2');
+
+            const makePill = (tech) => `<div class="tech-pill">&lt; ${tech} &gt;</div>`;
+            
+            // Double list to create continuous infinite loop
+            const row1Html = techStackRow1.map(makePill).join('') + techStackRow1.map(makePill).join('');
+            const row2Html = techStackRow2.map(makePill).join('') + techStackRow2.map(makePill).join('');
+
+            track1.innerHTML = row1Html;
+            track2.innerHTML = row2Html;
+        }
+
+        // --- Exact 6 Projects Data from Specification ---
+        const projectsData = {
+            eduquest: {
+                id: "01 // EDUQUEST",
+                title: "EduQuest",
+                subtitle: "AI-POWERED EDUCATIONAL PLATFORM",
+                status: "DEPLOYED / ITERATED",
+                focus: "MULTI-TENANCY // AUTHENTICATION // DATABASE DESIGN // AI INTEGRATION",
+                problem: "Educational workflows often lack individualized, dynamic assessment generation and struggle with multi-tenant institutional partitioning.",
+                solution: "EduQuest is a multi-tenant educational platform designed around AI-assisted quiz generation and learning workflows.\n\n⚙️ Core System:\n- Multi-tenant architecture with persistent sessions\n- AI-powered MCQ generation from document uploads\n- PDF/text document processing pipeline\n- Quiz creation, scheduling, and management\n- Student learning workflows and teacher/admin role-based access\n- Historical analytics and performance tracking",
+                tech_stack: ["React", "Node.js", "Express.js", "PostgreSQL", "LLM APIs", "REST APIs"],
+                video: "",
+                github: "https://github.com/Jaggu2m?utm_source=chatgpt.com"
+            },
+            pocketfilter: {
+                id: "02 // POCKET FILTER",
+                title: "Pocket Filter",
+                subtitle: "INTELLIGENT FILTERING / DATA APPLICATION",
+                status: "BUILT",
+                focus: "DATA PROCESSING // FILTERING LOGIC // APPLICATION ENGINEERING",
+                problem: "Unstructured information floods users without intelligent prioritization or contextual filtering.",
+                solution: "An application focused on intelligent filtering and transforming chaotic information into a more useful, structured experience.\n\n⚙️ Core System:\n- Intelligent multi-parameter filtering engine\n- Application-level data processing workflows\n- Fast search/filter discovery workflows\n- User-oriented information discovery and categorization",
+                tech_stack: ["JavaScript", "React", "Node.js", "Data Processing", "REST APIs"],
+                video: "",
+                github: "https://github.com/Jaggu2m?utm_source=chatgpt.com"
+            },
+            pinplot: {
+                id: "03 // PINPLOT",
+                title: "PinPlot",
+                subtitle: "DATA VISUALIZATION APPLICATION",
+                status: "BUILT",
+                focus: "DATA // VISUALIZATION // FRONTEND ENGINEERING",
+                problem: "Complex datasets are often difficult to explore without responsive, visual representations.",
+                solution: "An application centered around transforming information into interactive visual representations and structured exploration.\n\n⚙️ Core System:\n- Interactive data visualization canvas\n- Structured data processing pipelines\n- Visual exploration and trend mapping\n- User-driven interactive plotting and filtering",
+                tech_stack: ["React", "JavaScript", "Canvas", "Data Viz", "CSS"],
+                video: "",
+                github: "https://github.com/Jaggu2m?utm_source=chatgpt.com"
+            },
+            f1replay: {
+                id: "04 // F1 REPLAY",
+                title: "F1 Replay",
+                subtitle: "FORMULA 1 TELEMETRY & RACE VISUALIZATION SYSTEM",
+                status: "IN DEVELOPMENT",
+                focus: "REAL-TIME VISUALIZATION // DATA PROCESSING // TELEMETRY // API DESIGN",
+                problem: "Formula 1 race data contains millions of high-frequency telemetry points that are inaccessible to casual viewers without specialized visualization tools.",
+                solution: "A race visualization platform built around historical Formula 1 telemetry data.\n\n⚙️ Core System:\n- Historical F1 race analysis with FastF1\n- Canvas-based interactive track visualization\n- Real-time driver positioning and delta timings\n- Detailed throttle, brake, and speed telemetry graphs\n- Dynamic race leaderboard and replay scrub bar",
+                tech_stack: ["Python", "FastAPI", "FastF1", "Pandas", "React", "TypeScript", "Canvas"],
+                video: "",
+                github: "https://github.com/Jaggu2m?utm_source=chatgpt.com"
+            },
+            absa: {
+                id: "05 // ABSA",
+                title: "ABSA Pipeline",
+                subtitle: "ASPECT-BASED SENTIMENT ANALYSIS FOR FOOD CONTENT",
+                status: "RESEARCH / ML",
+                focus: "SPEECH PROCESSING // NLP // MODEL FINE-TUNING // SENTIMENT ANALYSIS",
+                problem: "Food vlogs contain rich, unstructured spoken feedback where multiple aspects (taste, price, ambience) have contrasting sentiments in a single sentence.",
+                solution: "An NLP pipeline designed to analyze sentiment from food-vlog speech by combining speech recognition with transformer-based NLP models.\n\n⚙️ Pipeline:\nVIDEO &rarr; AUDIO &rarr; SPEECH-TO-TEXT (Whisper) &rarr; ASPECT EXTRACTION &rarr; SENTIMENT ANALYSIS\n\n⚙️ Core Technologies:\n- Whisper for audio speech-to-text\n- BERT & DistilBERT for aspect categorization\n- LoRA parameter-efficient fine-tuning\n- Multi-class sentiment evaluation",
+                tech_stack: ["Whisper", "BERT", "DistilBERT", "LoRA", "NLP", "Python", "Transformers"],
+                video: "",
+                github: "https://github.com/Jaggu2m?utm_source=chatgpt.com"
+            },
+            replate: {
+                id: "06 // REPLATE",
+                title: "RePlate",
+                subtitle: "SMART FOOD WASTE MANAGEMENT SYSTEM",
+                status: "BUILT",
+                focus: "FULL-STACK DEVELOPMENT // REST APIs // DATABASE DESIGN",
+                problem: "Massive commercial food waste occurs alongside widespread local food insecurity due to lack of real-time coordination channels.",
+                solution: "A full-stack application designed around reducing food waste and connecting available food resources with potential recipient organizations.\n\n⚙️ Core System:\n- Real-time surplus food listing and tracking\n- User and organization authentication\n- Notification and claim system\n- Database schema optimized for geo-location discovery",
+                tech_stack: ["MongoDB", "Express.js", "React", "Node.js", "REST APIs"],
+                video: "",
+                github: "https://github.com/Jaggu2m?utm_source=chatgpt.com"
+            }
+        };
+
+        // --- Project Modal Controls ---
+        function openProjectModal(key) {
+            const data = projectsData[key];
+            if (!data) return;
+
+            document.getElementById('modal-id').textContent = data.id;
+            document.getElementById('modal-status').textContent = data.status;
+            
+            const titleEl = document.getElementById('modal-title');
+            titleEl.textContent = data.title;
+            titleEl.setAttribute('data-text', data.title);
+            
+            document.getElementById('modal-subtitle').textContent = data.subtitle;
+            document.getElementById('modal-focus').textContent = "ENGINEERING FOCUS: " + data.focus;
+            document.getElementById('modal-problem').textContent = data.problem;
+            document.getElementById('modal-solution').textContent = data.solution;
+            document.getElementById('modal-github').setAttribute('href', data.github);
+
+            // Tags
+            const tagsContainer = document.getElementById('modal-tags');
+            tagsContainer.innerHTML = data.tech_stack.map(tag => 
+                `<span class="text-xs font-mono font-bold px-2.5 py-1 bg-black/60 border border-orange-500 text-yellow-300 rounded">${tag}</span>`
+            ).join('');
+
+            // Video Handling
+            const videoEl = document.getElementById('modal-video');
+            const sourceEl = document.getElementById('modal-video-source');
+            const placeholderEl = document.getElementById('modal-video-placeholder');
+
+            if (data.video && data.video.trim() !== "") {
+                sourceEl.src = data.video;
+                videoEl.classList.remove('hidden');
+                placeholderEl.classList.add('hidden');
+                videoEl.load();
+                videoEl.play().catch(() => {});
+            } else {
+                videoEl.pause();
+                videoEl.classList.add('hidden');
+                placeholderEl.classList.remove('hidden');
+            }
+
+            // Show Backdrop
+            const modal = document.getElementById('project-modal');
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+
+            if (window.triggerDimensionalWarp) {
+                window.triggerDimensionalWarp('ANOMALY_INSPECT // ' + data.title.toUpperCase());
+            }
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('open');
+            document.body.style.overflow = 'unset';
+
+            const videoEl = document.getElementById('modal-video');
+            videoEl.pause();
+        }
+
+        function closeProjectModalOnBackdrop(e) {
+            if (e.target.id === 'project-modal') {
+                closeProjectModal();
+            }
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeProjectModal();
+        });
+
+        // --- Contact Form Transmission Terminal ---
+        document.getElementById('comms-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            document.getElementById('form-container').classList.add('hidden');
+            document.getElementById('success-state').classList.remove('hidden');
+            
+            if (window.triggerDimensionalWarp) {
+                window.triggerDimensionalWarp('SIGNAL_TRANSMITTED // SUCCESS');
+            }
+        });
+
+        function resetCommsForm() {
+            document.getElementById('comms-form').reset();
+            document.getElementById('form-container').classList.remove('hidden');
+            document.getElementById('success-state').classList.add('hidden');
+        }
+
+        // --- Scroll & Transition-Driven 120 FPS Multiverse Tunnel Engine ---
         document.addEventListener('DOMContentLoaded', () => {
+            initMarquee();
+
             const canvas = document.getElementById('tunnel-canvas');
             const ctx = canvas.getContext('2d');
             const warpBadge = document.getElementById('warp-badge');
@@ -360,7 +1354,6 @@
 
             // --- Scroll & Velocity Physics State ---
             let scrollZ = 0;
-            let targetScrollZ = 0;
             let velocityZ = 0;
             let lastScrollY = window.scrollY;
             let isWarping = false;
@@ -378,16 +1371,13 @@
                 ensureRenderLoop();
             }, { passive: true });
 
-            // --- USER IDEA: Motion Driven by Scrolling ---
+            // Motion Driven by Scrolling
             window.addEventListener('scroll', () => {
                 const currentY = window.scrollY;
                 const deltaY = currentY - lastScrollY;
                 lastScrollY = currentY;
 
-                // Propel rings forward/backward with scroll velocity
                 velocityZ += deltaY * 1.8;
-                
-                // Cap maximum scroll velocity for comfort
                 if (velocityZ > 120) velocityZ = 120;
                 if (velocityZ < -120) velocityZ = -120;
 
@@ -395,20 +1385,7 @@
                 ensureRenderLoop();
             }, { passive: true });
 
-            // --- USER IDEA: Motion Driven by Project Hover / Focus ---
-            document.querySelectorAll('.project-card').forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    pulseEnergy = 1.0;
-                    velocityZ += 35;
-                    setWarpStatus(true, 'ANOMALY DETECTED // PULSE');
-                    ensureRenderLoop();
-                });
-                card.addEventListener('click', () => {
-                    triggerDimensionalWarp('ENTERING PROJECT // ANOMALY');
-                });
-            });
-
-            // --- USER IDEA: Motion Driven by Navigating to Another Page / Section ---
+            // Nav jumps
             document.querySelectorAll('.nav-jump').forEach(link => {
                 link.addEventListener('click', (e) => {
                     const targetId = link.getAttribute('href');
@@ -427,16 +1404,11 @@
                 });
             });
 
-            document.getElementById('initiate-btn').addEventListener('click', () => {
-                triggerDimensionalWarp('MULTIVERSE JUMP // EARTH-42');
-            });
-
-            function triggerDimensionalWarp(statusMessage) {
-                velocityZ = 140; // Massive forward warp thrust
+            window.triggerDimensionalWarp = function(statusMessage) {
+                velocityZ = 140; // Forward warp thrust
                 pulseEnergy = 1.5;
                 isWarping = true;
                 
-                // Chromatic flash
                 warpFlash.classList.add('active');
                 setTimeout(() => warpFlash.classList.remove('active'), 200);
 
@@ -447,7 +1419,7 @@
                 warpTimer = setTimeout(() => {
                     isWarping = false;
                 }, 800);
-            }
+            };
 
             function setWarpStatus(active, message) {
                 if (active) {
@@ -459,18 +1431,17 @@
                 }
             }
 
-            // --- 6-Sided Across the Spider-Verse Hexagon Ring Data ---
+            // Hexagonal Ring Data (Movie-Accurate 6-sided)
             const NUM_RINGS = 12;
             const rings = [];
             for (let i = 0; i < NUM_RINGS; i++) {
                 rings.push({
                     baseZ: (i / NUM_RINGS) * 3600,
                     rot: (i % 2 === 0 ? 1 : -1) * (i * 1.5),
-                    colorShift: i % 3
                 });
             }
 
-            // Laser Speed Warp Beams
+            // Laser Speed Beams
             const NUM_BEAMS = 30;
             const beams = [];
             const beamPalette = ['#ffea00', '#ff4800', '#ff0077', '#00f3ff', '#ffffff'];
@@ -486,45 +1457,37 @@
                 });
             }
 
-            // --- Draw Elongated Spider-Verse Hexagon ---
             function drawHexagon(cx, cy, w, h) {
                 ctx.beginPath();
-                ctx.moveTo(cx - w * 0.28, cy - h * 0.5); // Top-left
-                ctx.lineTo(cx + w * 0.28, cy - h * 0.5); // Top-right
-                ctx.lineTo(cx + w * 0.5, cy);             // Right point
-                ctx.lineTo(cx + w * 0.28, cy + h * 0.5); // Bottom-right
-                ctx.lineTo(cx - w * 0.28, cy + h * 0.5); // Bottom-left
-                ctx.lineTo(cx - w * 0.5, cy);             // Left point
+                ctx.moveTo(cx - w * 0.28, cy - h * 0.5);
+                ctx.lineTo(cx + w * 0.28, cy - h * 0.5);
+                ctx.lineTo(cx + w * 0.5, cy);
+                ctx.lineTo(cx + w * 0.28, cy + h * 0.5);
+                ctx.lineTo(cx - w * 0.28, cy + h * 0.5);
+                ctx.lineTo(cx - w * 0.5, cy);
                 ctx.closePath();
             }
 
             // --- Render Engine ---
             function render() {
-                // Apply physics damping (smooth friction)
                 velocityZ *= 0.88;
                 scrollZ += velocityZ;
-
-                // Subtle decay of pulse energy
                 pulseEnergy *= 0.94;
 
-                // Parallax smoothing
                 curMouseX += (mouseX - curMouseX) * 0.08;
                 curMouseY += (mouseY - curMouseY) * 0.08;
 
-                // Counter-tilt portfolio container
-                freeFall.style.transform = `rotateX(${-curMouseY * 6}deg) rotateY(${curMouseX * 6}deg)`;
+                freeFall.style.transform = `rotateX(${-curMouseY * 5}deg) rotateY(${curMouseX * 5}deg)`;
 
-                // Clear screen
                 ctx.clearRect(0, 0, width, height);
 
-                const cx = width / 2 + curMouseX * 40;
-                const cy = height / 2 + curMouseY * 40;
+                const cx = width / 2 + curMouseX * 35;
+                const cy = height / 2 + curMouseY * 35;
 
                 ctx.save();
                 ctx.globalCompositeOperation = 'screen';
 
-                // 1. Deep Central Singularity Core
-                const singularityZ = 3600;
+                // 1. Deep Singularity Core
                 const coreRad = Math.max(120, 220 + Math.abs(velocityZ) * 0.8 + pulseEnergy * 60);
                 const coreGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreRad);
                 coreGrad.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
@@ -538,7 +1501,7 @@
                 ctx.arc(cx, cy, coreRad, 0, Math.PI * 2);
                 ctx.fill();
 
-                // Horizontal Anamorphic Laser Flare across singularity
+                // Anamorphic Lens Flare
                 const flareLen = width * 0.85;
                 const flareGrad = ctx.createLinearGradient(cx - flareLen/2, cy, cx + flareLen/2, cy);
                 flareGrad.addColorStop(0, 'transparent');
@@ -554,7 +1517,7 @@
                 ctx.lineTo(cx + flareLen/2, cy);
                 ctx.stroke();
 
-                // 2. Concentric Deep Red Hexagons in Infinite Distance
+                // 2. Concentric Deep Red Hexagons
                 for (let d = 1; d <= 3; d++) {
                     const hexScale = d * 45;
                     ctx.strokeStyle = d === 1 ? '#ff0033' : (d === 2 ? '#ff4800' : '#ff0077');
@@ -563,7 +1526,7 @@
                     ctx.stroke();
                 }
 
-                // 3. Laser Speed Warp Beams (stretch with scroll velocity!)
+                // 3. Laser Speed Warp Beams
                 const warpSpeedFactor = Math.abs(velocityZ) * 0.4 + pulseEnergy * 20;
                 for (let i = 0; i < NUM_BEAMS; i++) {
                     const b = beams[i];
@@ -583,22 +1546,18 @@
                     ctx.stroke();
                 }
 
-                // 4. Movie-Accurate Hexagonal Portal Rings
+                // 4. Hexagonal Portal Rings
                 for (let i = 0; i < NUM_RINGS; i++) {
                     const ring = rings[i];
-                    // Progress Z toward camera
                     let z = (ring.baseZ - scrollZ) % 3600;
                     if (z < 0) z += 3600;
 
-                    // Perspective formula (Z: 3600 -> far, Z: 200 -> near camera)
-                    const depthNorm = (3600 - z) / 3600; // 0 (far) to 1 (near)
+                    const depthNorm = (3600 - z) / 3600;
                     const scale = Math.pow(depthNorm, 2.2) * 2.2 + 0.12;
 
-                    // Ring Dimensions (Elongated across-the-spider-verse hexagon ratio)
                     const w = Math.min(width * 1.6, 1400) * scale;
                     const h = w * 0.62;
 
-                    // Fade in at deep distance, full brightness in mid-tunnel, fade out near camera
                     let alpha = 1;
                     if (depthNorm < 0.15) alpha = depthNorm / 0.15;
                     if (depthNorm > 0.85) alpha = (1 - depthNorm) / 0.15;
@@ -662,31 +1621,27 @@
                     }
                     ctx.stroke();
 
-                    // F. Digital Tech Hashes along Top and Bottom Bars
+                    // F. Digital Tech Hashes
                     if (scale > 0.4) {
                         ctx.strokeStyle = `rgba(255, 234, 0, ${0.9 * alpha})`;
                         ctx.lineWidth = Math.max(1.5, 3 * scale);
                         const hashStep = w * 0.08;
                         ctx.beginPath();
                         for (let x = -w * 0.22; x <= w * 0.22; x += hashStep) {
-                            // Top hashes
                             ctx.moveTo(x, -h * 0.5 - 6 * scale);
                             ctx.lineTo(x, -h * 0.5 + 6 * scale);
-                            // Bottom hashes
                             ctx.moveTo(x, h * 0.5 - 6 * scale);
                             ctx.lineTo(x, h * 0.5 + 6 * scale);
                         }
                         ctx.stroke();
 
-                        // Glowing Target Crosshairs on Left and Right points
+                        // Glowing Target Crosshairs
                         ctx.strokeStyle = `rgba(255, 255, 255, ${0.85 * alpha})`;
                         ctx.lineWidth = Math.max(1, 2 * scale);
                         const chLen = 12 * scale;
                         ctx.beginPath();
-                        // Right point crosshair
                         ctx.moveTo(w * 0.5 - chLen, 0); ctx.lineTo(w * 0.5 + chLen, 0);
                         ctx.moveTo(w * 0.5, -chLen); ctx.lineTo(w * 0.5, chLen);
-                        // Left point crosshair
                         ctx.moveTo(-w * 0.5 - chLen, 0); ctx.lineTo(-w * 0.5 + chLen, 0);
                         ctx.moveTo(-w * 0.5, -chLen); ctx.lineTo(-w * 0.5, chLen);
                         ctx.stroke();
@@ -697,14 +1652,10 @@
 
                 ctx.restore();
 
-                // --- SMART POWER SAVING ---
-                // Only keep render loop active when there is motion (scroll velocity, warp, or mouse movement)
                 const isMoving = Math.abs(velocityZ) > 0.05 || isWarping || pulseEnergy > 0.01;
-                
                 if (isMoving) {
                     requestAnimationFrame(render);
                 } else {
-                    // Motion has smoothly completed
                     isLoopRunning = false;
                     setWarpStatus(false);
                 }
@@ -717,7 +1668,6 @@
                 }
             }
 
-            // Initial render kick-off to draw static portal, then sleep at 0% CPU
             ensureRenderLoop();
         });
     </script>
