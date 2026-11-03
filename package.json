@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
-    "watch": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+    "watch": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "start": "serve . -l 3000"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +13,7 @@
   "description": "",
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",
+    "serve": "^14.2.6",
     "tailwindcss": "^4.3.3"
   }
 }

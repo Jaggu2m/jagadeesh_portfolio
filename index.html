@@ -28,6 +28,8 @@
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
+            /* Smooth native scroll on all platforms */
+            -webkit-overflow-scrolling: touch;
         }
 
         .font-anton {
@@ -51,6 +53,9 @@
             pointer-events: none;
             z-index: 0;
             background: radial-gradient(ellipse at 50% 50%, #2e003c 0%, #150020 40%, #05000a 100%);
+            /* Own GPU compositing layer — keeps canvas repaints off the scroll thread */
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         /* UI Free-Fall Parallax Layer */
@@ -58,7 +63,7 @@
             position: relative;
             z-index: 10;
             will-change: transform;
-            transition: transform 0.15s ease-out;
+            transform: translateZ(0);
         }
 
         /* Dimensional Warp Burst Flash */
@@ -95,6 +100,9 @@
             height: 100%;
             background: transparent;
             mix-blend-mode: screen;
+            will-change: transform, clip-path;
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
 
         .glitch::before {
@@ -175,53 +183,103 @@
             box-sizing: border-box;
         }
 
-        /* Miles Chromatic Shift 1: Neon Cyan Comic Misprint Plate */
         .miles-name::before {
-            left: -3px;
-            top: -1px;
             -webkit-text-stroke: 1.5px var(--spider-cyan);
             -webkit-text-fill-color: transparent;
+            transform: translate(-3px, -2px);
             z-index: -1;
             opacity: 0.75;
-            animation: miles-jitter-cyan 3.5s infinite ease-in-out alternate;
+            animation: miles-plate-cyan 4s infinite ease-in-out alternate;
         }
 
-        /* Miles Chromatic Shift 2: Hot Pink Misprint Plate */
         .miles-name::after {
-            left: 3px;
-            top: 2px;
             -webkit-text-stroke: 1.5px var(--spider-hotpink);
             -webkit-text-fill-color: transparent;
+            transform: translate(3px, 2px);
             z-index: -2;
             opacity: 0.75;
-            animation: miles-jitter-pink 3s infinite ease-in-out alternate;
+            animation: miles-plate-pink 3.5s infinite ease-in-out alternate;
         }
 
-        @keyframes miles-jitter-cyan {
-            0% { transform: translate(0, 0); }
-            45% { transform: translate(-2px, 1px) skewX(1deg); }
-            50% { transform: translate(-3px, -1px) skewX(-1.5deg); }
-            55% { transform: translate(-1px, 1px); }
-            100% { transform: translate(0, 0); }
+        @keyframes miles-plate-cyan {
+            0% { transform: translate(-3px, -2px); }
+            50% { transform: translate(-5px, -1px); }
+            100% { transform: translate(-2px, -3px); }
         }
 
-        @keyframes miles-jitter-pink {
-            0% { transform: translate(0, 0); }
-            40% { transform: translate(1px, -1px) skewX(-1deg); }
-            48% { transform: translate(3px, 1px) skewX(1.5deg); }
-            56% { transform: translate(1px, -1px); }
-            100% { transform: translate(0, 0); }
+        @keyframes miles-plate-pink {
+            0% { transform: translate(3px, 2px); }
+            50% { transform: translate(4px, 3px); }
+            100% { transform: translate(2px, 1px); }
+        }
+
+        /* Earth-19 Radioactive Spider Crawler */
+        .spider-crawler {
+            position: absolute;
+            width: clamp(52px, 6.5vw, 75px);
+            height: auto;
+            pointer-events: auto;
+            cursor: pointer;
+            z-index: 30;
+            top: 0;
+            left: 0;
+            transform-origin: 50% 50%;
+            transition: filter 0.2s ease;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 12px rgba(0, 243, 255, 0.6));
+            will-change: transform;
+        }
+
+        .spider-crawler:hover {
+            filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 22px rgba(0, 243, 255, 0.95));
+        }
+
+        .spider-sprite {
+            width: 100%;
+            height: auto;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        /* Radioactive bio-electric aura */
+        .spider-glow-aura {
+            position: absolute;
+            inset: 15%;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 243, 255, 0.45) 0%, rgba(255, 0, 85, 0.25) 50%, transparent 70%);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            animation: spider-pulse 2s infinite ease-in-out;
+            z-index: -1;
+        }
+
+        @keyframes spider-pulse {
+            0%, 100% { opacity: 0.5; transform: scale(0.9); }
+            50% { opacity: 0.95; transform: scale(1.15); }
+        }
+
+        /* Silk web canvas */
+        #spider-web-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 25;
         }
 
         /* Halftone Hologram Project Cards */
         .neon-card {
-            background-color: rgba(9, 1, 18, 0.85);
+            background-color: rgba(9, 1, 18, 0.94);
             border: 3px solid var(--spider-hotpink);
             transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease;
             box-shadow: 6px 6px 0px var(--spider-orange), 0 0 20px rgba(255, 72, 0, 0.3);
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(8px);
+            /* Isolate card repaints to their own layer */
+            contain: layout style;
+            transform: translateZ(0);
         }
 
         .neon-card::before {
@@ -241,6 +299,7 @@
             transform: translateY(-8px) scale(1.02) skewX(-1.5deg);
             border-color: var(--spider-yellow);
             box-shadow: 0 0 35px var(--spider-hotpink), 10px 10px 0px var(--spider-cyan), 0 0 50px var(--spider-orange);
+            will-change: transform;
         }
         
         .neon-card:hover::before {
@@ -284,6 +343,8 @@
             display: flex;
             gap: 16px;
             width: max-content;
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         .marquee-track.left {
@@ -399,6 +460,8 @@
             pointer-events: none;
             z-index: 40;
             opacity: 0.4;
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         /* Multiverse Jump Indicator Badge */
@@ -503,6 +566,88 @@
         }
 
         /* Mobile Modal Fixes */
+        /* ── Music Player Button — Octagonal Ring ──────────────────────── */
+        #music-btn {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            z-index: 9999;
+            width: 72px;
+            height: 72px;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+        }
+
+        /* SVG ring wrapper — spins when playing */
+        #music-ring-svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            transition: filter 0.35s ease;
+        }
+
+        /* Idle: yellow neon glow */
+        #music-ring-svg {
+            filter: drop-shadow(0 0 4px #FFE600aa);
+        }
+
+        /* Hover: hot-pink burst */
+        #music-btn:hover #music-ring-svg {
+            filter: drop-shadow(0 0 8px var(--spider-hotpink))
+                    drop-shadow(0 0 20px var(--spider-hotpink));
+        }
+
+        /* Playing: slow rotation + dual-colour glow */
+        #music-btn.playing #music-ring-svg {
+            animation: ring-spin 6s linear infinite;
+            filter: drop-shadow(0 0 6px #FFE600)
+                    drop-shadow(0 0 14px var(--spider-hotpink));
+        }
+
+        @keyframes ring-spin {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+
+        /* Outer octagon ring stroke pulsing colour when playing */
+        #music-btn.playing #oct-outer {
+            animation: oct-pulse 1.6s ease-in-out infinite alternate;
+        }
+        @keyframes oct-pulse {
+            from { stroke: #FFE600; }
+            to   { stroke: var(--spider-hotpink); }
+        }
+
+        /* Centre icon */
+        #music-icon-inner {
+            position: relative;
+            z-index: 1;
+            font-size: 22px;
+            line-height: 1;
+            color: #FFE600;
+            transition: color 0.3s ease, transform 0.2s ease;
+            pointer-events: none;
+        }
+        #music-btn:hover #music-icon-inner {
+            color: #fff;
+            transform: scale(1.15);
+        }
+        #music-btn.playing #music-icon-inner {
+            color: #fff;
+        }
+
+        @media (max-width: 640px) {
+            #music-btn { bottom: 14px; left: 14px; width: 56px; height: 56px; }
+            #music-icon-inner { font-size: 17px; }
+        }
+
         @media (max-width: 640px) {
             .project-modal-backdrop { padding: 10px; }
             .project-modal-box { max-height: 95vh; }
@@ -530,6 +675,54 @@
 </head>
 <body class="antialiased min-h-screen flex flex-col relative selection:bg-cyan-500 selection:text-white">
 
+    <!-- Background Music -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="public/audio/theme.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Floating Music Control Button — Octagonal Ring -->
+    <button id="music-btn" onclick="toggleMusic()" title="Toggle music">
+        <!--
+            Octagon: 72×72 viewBox.
+            Outer ring  = thick stroked polygon, no fill → the "ring".
+            Inner fill  = near-black polygon creates the hollow look.
+            Points formula: cut = 18px from each corner on a 72-unit box.
+            Outer pts: 18,0 54,0 72,18 72,54 54,72 18,72 0,54 0,18
+        -->
+        <svg id="music-ring-svg" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" overflow="visible">
+            <defs>
+                <filter id="oct-glow" x="-40%" y="-40%" width="180%" height="180%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
+                    <feMerge>
+                        <feMergeNode in="blur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+            <!-- Dark filled inner octagon (slightly smaller, 8px inset) -->
+            <polygon
+                points="22,4 50,4 68,22 68,50 50,68 22,68 4,50 4,22"
+                fill="rgba(8,8,8,0.88)"/>
+            <!-- Glowing octagonal ring (outer stroke) -->
+            <polygon
+                id="oct-outer"
+                points="18,1 54,1 71,18 71,54 54,71 18,71 1,54 1,18"
+                fill="none"
+                stroke="#FFE600"
+                stroke-width="3.5"
+                stroke-linejoin="round"
+                filter="url(#oct-glow)"/>
+            <!-- Inner thin ring accent -->
+            <polygon
+                points="24,6 48,6 66,24 66,48 48,66 24,66 6,48 6,24"
+                fill="none"
+                stroke="rgba(255,230,0,0.18)"
+                stroke-width="1"/>
+        </svg>
+        <!-- Play / Pause icon centred inside the ring -->
+        <span id="music-icon-inner">▶</span>
+    </button>
+
     <!-- Scanline Overlay -->
     <div class="scanlines"></div>
 
@@ -538,6 +731,9 @@
 
     <!-- 120 FPS High-Performance Multiverse Tunnel Canvas -->
     <canvas id="tunnel-canvas"></canvas>
+
+    <!-- Radioactive Spider Silk Web Line Canvas -->
+    <canvas id="spider-web-canvas"></canvas>
 
     <!-- Real-time Dimension Status Badge -->
     <div id="warp-badge" class="warp-status-badge">
@@ -583,9 +779,19 @@
                 <p class="text-cyan-400 font-bold tracking-[0.2em] md:tracking-[0.3em] uppercase mb-4 text-[10px] md:text-sm drop-shadow-[0_0_12px_rgba(0,243,255,0.9)]">
                     PORTFOLIO SPECIFICATION — SYSTEM ONLINE
                 </p>
-                <h1 class="text-6xl md:text-8xl lg:text-9xl font-anton mb-6 leading-tight miles-name uppercase tracking-wider" data-text="JAGADEESH">
-                    JAGADEESH
-                </h1>
+                <div class="flex justify-center relative">
+                    <div class="relative inline-block" id="hero-tag-container">
+                        <h1 class="text-6xl md:text-8xl lg:text-9xl font-anton mb-6 leading-tight miles-name uppercase tracking-wider" id="hero-name" data-text="JAGADEESH">
+                            JAGADEESH
+                        </h1>
+
+                        <!-- Radioactive Spider #19 Crawler -->
+                        <div id="spider-crawler" class="spider-crawler" title="Earth-19 Radioactive Spider // Click or hover to scurry!">
+                            <div class="spider-glow-aura"></div>
+                            <img src="./spider_19.png" alt="Earth-19 Radioactive Spider" class="spider-sprite" id="spider-sprite">
+                        </div>
+                    </div>
+                </div>
                 <h2 class="text-xl md:text-4xl font-anton text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-500 to-yellow-400 mb-8 transform -skew-x-6 drop-shadow-lg">
                     AI Engineer // Full-Stack Developer
                 </h2>
@@ -1201,20 +1407,28 @@
                             
                             <div id="form-container">
                                 <form id="comms-form" class="space-y-6">
+                                    <!-- Web3Forms Access Key slot -->
+                                    <input type="hidden" name="access_key" id="form-access-key" value=35d55626-6713-4d8e-a007-aa8d836956d4>
+                                    <input type="hidden" name="subject" value="New Transmission from Portfolio Contact Form">
+                                    <input type="hidden" name="from_name" value="Portfolio Transmission Hub">
+                                    <!-- Honeypot spam filter -->
+                                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
                                     <div>
                                         <label class="block text-xs font-mono text-cyan-400 font-bold mb-2 tracking-widest">IDENTITY / NAME &gt;</label>
-                                        <input type="text" id="form-name" required placeholder="Recruiter, Engineer, Collaborator..." class="w-full bg-black/60 border-2 border-gray-700 focus:border-yellow-400 px-4 py-3 text-white font-mono text-sm outline-none transition-colors">
+                                        <input type="text" id="form-name" name="name" required placeholder="Recruiter, Engineer, Collaborator..." class="w-full bg-black/60 border-2 border-gray-700 focus:border-yellow-400 px-4 py-3 text-white font-mono text-sm outline-none transition-colors">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-mono text-cyan-400 font-bold mb-2 tracking-widest">COMMS / EMAIL &gt;</label>
-                                        <input type="email" id="form-email" required placeholder="name@company.com or personal email" class="w-full bg-black/60 border-2 border-gray-700 focus:border-yellow-400 px-4 py-3 text-white font-mono text-sm outline-none transition-colors">
+                                        <input type="email" id="form-email" name="email" required placeholder="name@company.com or personal email" class="w-full bg-black/60 border-2 border-gray-700 focus:border-yellow-400 px-4 py-3 text-white font-mono text-sm outline-none transition-colors">
                                     </div>
                                     <div>
                                         <label class="block text-xs font-mono text-cyan-400 font-bold mb-2 tracking-widest">PAYLOAD / MESSAGE &gt;</label>
-                                        <textarea id="form-message" required rows="4" placeholder="Detail your project, engineering role, or collaboration parameter..." class="w-full bg-black/60 border-2 border-gray-700 focus:border-yellow-400 px-4 py-3 text-white font-mono text-sm outline-none transition-colors"></textarea>
+                                        <textarea id="form-message" name="message" required rows="4" placeholder="Detail your project, engineering role, or collaboration parameter..." class="w-full bg-black/60 border-2 border-gray-700 focus:border-yellow-400 px-4 py-3 text-white font-mono text-sm outline-none transition-colors"></textarea>
                                     </div>
-                                    <button type="submit" class="w-full bg-gradient-to-r from-orange-500 via-pink-600 to-yellow-400 text-white font-anton text-xl py-4 border-2 border-yellow-300 shadow-[6px_6px_0_var(--spider-cyan)] hover:opacity-95 hover:shadow-[8px_8px_0_var(--spider-hotpink)] hover:-translate-y-1 transition-all duration-200 cursor-pointer transform -skew-x-6">
-                                        <span class="inline-block transform skew-x-6">TRANSMIT_SIGNAL &rarr;</span>
+                                    <div id="form-error" class="hidden text-xs font-mono text-red-400 p-3 bg-red-950/40 border border-red-500"></div>
+                                    <button type="submit" id="form-submit-btn" class="w-full bg-gradient-to-r from-orange-500 via-pink-600 to-yellow-400 text-white font-anton text-xl py-4 border-2 border-yellow-300 shadow-[6px_6px_0_var(--spider-cyan)] hover:opacity-95 hover:shadow-[8px_8px_0_var(--spider-hotpink)] hover:-translate-y-1 transition-all duration-200 cursor-pointer transform -skew-x-6">
+                                        <span id="form-btn-text" class="inline-block transform skew-x-6">TRANSMIT_SIGNAL &rarr;</span>
                                     </button>
                                 </form>
                             </div>
@@ -1382,7 +1596,7 @@
                 problem: "Educational institutions lack a unified platform that combines intelligent assessment generation, document-grounded AI assistance, proctored exams, and real-time collaboration — all within a secure, multi-tenant architecture that isolates institutional data.",
                 solution: "Developed EdQuest AI — a full-stack, multi-tenant educational SaaS combining Generative AI, RAG, async background processing, and real-time collaboration.\n\nArchitecture: Modular monolith with layered separation of routing, validation, controllers, business logic, data access, and background workers.\n\n1. Multi-Tenant SaaS & RBAC\n- Organization-level data isolation with class scoping\n- Role-based access: Platform Admin, Org Admin, Teacher, Student\n- Tokenized invitation workflows with expiration handling\n\n2. RAG-Based Document Assistant (Chat with PDF)\n- PDF extraction, Tesseract OCR fallback for scanned pages, sliding-window chunking\n- pgvector semantic similarity search with source-page citations\n\n3. AI-Powered Assessment Generation\n- Groq (Llama 3.3 70B) + Google Gemini for curriculum-aligned MCQ generation\n- Separate practice and exam modes\n\n4. Async Background Processing\n- BullMQ + Redis for OCR ingestion, document processing, and notification queues\n\n5. Proctored Examination System\n- Fullscreen enforcement, tab-switch monitoring, violation logging\n- Auto-submit after 3 violations or timer expiry\n\n6. AI Flashcards & Spaced Repetition\n- AI-generated flashcard decks with SM-2 scheduling\n\n7. Real-Time Collaboration\n- Socket.IO with live messaging, presence, typing indicators, read receipts\n- Redis Pub/Sub for horizontal scaling\n\n8. Learning Analytics\n- Topic mastery tracking, Item Difficulty Index (P-value), AI remedial recommendations\n\n9. Security & Observability\n- Layered rate limiting, CSRF, Helmet CSP, Zod validation, Pino structured logging",
                 tech_stack: ["React 19", "TypeScript", "Node.js 20", "Express 5", "Prisma ORM", "PostgreSQL 15", "pgvector", "Redis 7", "BullMQ", "Groq API", "Llama 3.3 70B", "Google Gemini API", "Socket.IO", "Tesseract.js", "Docker", "GitHub Actions"],
-                video: "",
+                video: "public/videos/eduquest.mp4",
                 github: "https://github.com/Jaggu2m?utm_source=chatgpt.com",
                 live: "https://eduquest-frontend-0vve.onrender.com/"
             },
@@ -1395,7 +1609,7 @@
                 problem: "Personal finance management lacks intelligent AI-driven analytics, proper financial domain modeling with SOLID principles, and a unified system that handles transactions, budgets, loans, EMIs, and subscriptions with data consistency.",
                 solution: "Building an AI-Powered Personal Finance Management System combining financial tracking, deterministic computation, and Generative AI analytics.\n\nArchitecture: Modular TypeScript/Node.js backend with SOLID principles, OOP, and LLD practices. Routes → Middleware → Controllers → Services → Repositories.\n\n1. Financial Domain Modeling\n- Workflows for income, expenses, transfers, budgets, savings goals, loans, EMIs, subscriptions\n- Centralized business rules for financial calculations and balance updates\n\n2. Flexible Account Management\n- Optional account-association model: unified balance + individual account balances\n- Supports both account-specific and unspecified-balance transactions\n\n3. Transactional Data Consistency\n- PostgreSQL transactions for atomic financial operations across accounts, transactions, and liabilities\n\n4. AI Finance Copilot\n- Conversational interface for natural-language queries: spending diagnostics, budget status, savings goals, purchase-affordability simulations\n\n5. AI Financial Intelligence\n- Spending variance analysis, anomaly detection, budget-pace calculations, savings-goal health assessments, monthly financial summaries\n\n6. Redis Caching\n- Caching for frequently accessed financial data with targeted cache invalidation\n\n7. Smart Notifications\n- Budget threshold breaches, upcoming bills, subscription renewals, savings-goal risks\n\n8. Cross-Platform Mobile\n- React Native + Expo mobile application integrating with backend APIs",
                 tech_stack: ["TypeScript", "Node.js", "Express.js", "PostgreSQL", "Redis", "Generative AI", "React Native", "Expo", "Docker", "SOLID", "OOP", "LLD", "REST APIs"],
-                video: "",
+                video: "public/videos/pocketfilter.mp4",
                 github: "https://github.com/Jaggu2m?utm_source=chatgpt.com"
             },
             pinplot: {
@@ -1420,7 +1634,7 @@
                 problem: "Formula 1 race data contains millions of high-frequency telemetry points — driver positions, speed traces, throttle, braking, DRS — that are inaccessible to fans without specialized, interactive visualization tools that synchronize all data streams in real time.",
                 solution: "A full-stack Formula 1 race replay and telemetry visualization platform transforming historical motorsport data into an interactive, time-synchronized racing experience.\n\nArchitecture: React frontend communicates with Python FastAPI REST endpoints. Backend integrates FastF1 for data retrieval and Pandas for telemetry processing.\n\n1. Interactive Race Replay Engine\n- Time-driven replay with play/pause, playback speed controls, and timeline scrubbing\n- Full historical race progression reconstruction\n\n2. Circuit Visualization\n- HTML5 Canvas graphical racing interface for driver movement and track positions\n- Processed telemetry and positional data rendering\n\n3. Dynamic Leaderboard\n- Synchronized leaderboard displaying driver positions, lap progression, and timing gaps throughout replay\n\n4. Driver Telemetry Analysis\n- Detailed telemetry visualization: speed, throttle, braking, RPM, gear selection, DRS, distance\n- Per-driver performance analytics and comparison\n\n5. Historical Race Data Integration\n- FastF1 library for F1 session info, lap timings, driver data, and telemetry\n- Pandas for cleaning, organizing, and transforming raw motorsport datasets",
                 tech_stack: ["React.js", "TypeScript", "HTML5 Canvas", "Python", "FastAPI", "Uvicorn", "FastF1", "Pandas"],
-                video: "",
+                video: "public/videos/f1replay.mp4",
                 github: "https://github.com/Jaggu2m?utm_source=chatgpt.com"
             },
             absa: {
@@ -1530,19 +1744,71 @@
             if (e.key === 'Escape') closeProjectModal();
         });
 
-        // --- Contact Form Transmission Terminal ---
-        document.getElementById('comms-form').addEventListener('submit', (e) => {
+        // --- Contact Form Transmission Terminal (Web3Forms Real Email API) ---
+        const commsForm = document.getElementById('comms-form');
+        const commsSubmitBtn = document.getElementById('form-submit-btn');
+        const commsBtnText = document.getElementById('form-btn-text');
+        const commsError = document.getElementById('form-error');
+
+        commsForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            document.getElementById('form-container').classList.add('hidden');
-            document.getElementById('success-state').classList.remove('hidden');
-            
-            if (window.triggerDimensionalWarp) {
-                window.triggerDimensionalWarp('SIGNAL_TRANSMITTED // SUCCESS');
+            commsError.classList.add('hidden');
+            commsError.textContent = '';
+
+            const accessKeyInput = document.getElementById('form-access-key');
+            const accessKey = accessKeyInput ? accessKeyInput.value.trim() : '';
+
+            if (!accessKey || accessKey === 'YOUR_ACCESS_KEY_HERE') {
+                commsError.textContent = '// SETUP REQUIRED: Enter your free Web3Forms Access Key at index.html (search for form-access-key). Get yours free in 10s at web3forms.com';
+                commsError.classList.remove('hidden');
+                return;
+            }
+
+            // Loading state
+            commsSubmitBtn.disabled = true;
+            commsSubmitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+            commsBtnText.textContent = 'ENCRYPTING & TRANSMITTING...';
+
+            const formData = new FormData(commsForm);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
+                });
+
+                const result = await response.json();
+
+                if (response.status === 200 && result.success) {
+                    document.getElementById('form-container').classList.add('hidden');
+                    document.getElementById('success-state').classList.remove('hidden');
+
+                    if (window.triggerDimensionalWarp) {
+                        window.triggerDimensionalWarp('SIGNAL_TRANSMITTED // SUCCESS');
+                    }
+                } else {
+                    throw new Error(result.message || 'Signal transmission rejected by remote gateway.');
+                }
+            } catch (err) {
+                commsError.textContent = `// TRANSMISSION_FAILURE: ${err.message || 'Unable to establish comms uplink. Please email directly.'}`;
+                commsError.classList.remove('hidden');
+            } finally {
+                commsSubmitBtn.disabled = false;
+                commsSubmitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+                commsBtnText.textContent = 'TRANSMIT_SIGNAL →';
             }
         });
 
         function resetCommsForm() {
-            document.getElementById('comms-form').reset();
+            commsForm.reset();
+            commsError.classList.add('hidden');
+            commsError.textContent = '';
             document.getElementById('form-container').classList.remove('hidden');
             document.getElementById('success-state').classList.add('hidden');
         }
@@ -1563,7 +1829,8 @@
             let dpr = 1;
 
             function resize() {
-                dpr = Math.min(window.devicePixelRatio || 1, 2);
+                // Cap DPR at 1.5 — beyond that the canvas work costs more than it's worth
+                dpr = Math.min(window.devicePixelRatio || 1, 1.5);
                 width = window.innerWidth;
                 height = window.innerHeight;
                 canvas.width = width * dpr;
@@ -1574,11 +1841,15 @@
             resize();
 
             // --- Scroll & Velocity Physics State ---
-            let scrollZ = 0;
+            const SCROLL_DEPTH_RATIO = 1.6; // Units through multiverse tunnel per pixel scrolled
+            let targetScrollZ = window.scrollY * SCROLL_DEPTH_RATIO;
+            let scrollZ = targetScrollZ;
+            let targetWarpZ = 0;
+            let warpZ = 0;
             let velocityZ = 0;
-            let lastScrollY = window.scrollY;
             let isWarping = false;
             let warpTimer = null;
+            let scrollStopTimer = null;
             let pulseEnergy = 0;
             let isLoopRunning = false;
 
@@ -1592,18 +1863,16 @@
                 ensureRenderLoop();
             }, { passive: true });
 
-            // Motion Driven by Scrolling
+            // Motion Driven by Scrolling — directly mapped to scroll position for real-time responsiveness
             window.addEventListener('scroll', () => {
-                const currentY = window.scrollY;
-                const deltaY = currentY - lastScrollY;
-                lastScrollY = currentY;
-
-                velocityZ += deltaY * 1.8;
-                if (velocityZ > 120) velocityZ = 120;
-                if (velocityZ < -120) velocityZ = -120;
-
+                targetScrollZ = window.scrollY * SCROLL_DEPTH_RATIO;
                 setWarpStatus(true, 'WARPING // SCROLL TRAVEL');
                 ensureRenderLoop();
+
+                clearTimeout(scrollStopTimer);
+                scrollStopTimer = setTimeout(() => {
+                    if (!isWarping) setWarpStatus(false);
+                }, 160);
             }, { passive: true });
 
             // Nav jumps
@@ -1626,8 +1895,8 @@
             });
 
             window.triggerDimensionalWarp = function(statusMessage) {
-                velocityZ = 140; // Forward warp thrust
-                pulseEnergy = 1.5;
+                targetWarpZ += 550; // Dynamic forward warp thrust
+                pulseEnergy = 1.6;
                 isWarping = true;
                 
                 warpFlash.classList.add('active');
@@ -1639,7 +1908,8 @@
                 clearTimeout(warpTimer);
                 warpTimer = setTimeout(() => {
                     isWarping = false;
-                }, 800);
+                    setWarpStatus(false);
+                }, 750);
             };
 
             function setWarpStatus(active, message) {
@@ -1690,15 +1960,35 @@
             }
 
             // --- Render Engine ---
+            let lastFreeFallTransform = '';
             function render() {
-                velocityZ *= 0.88;
-                scrollZ += velocityZ;
-                pulseEnergy *= 0.94;
+                // Direct, real-time follow: rings move instantaneously while scrolling
+                const scrollDiff = targetScrollZ - scrollZ;
+                const warpDiff = targetWarpZ - warpZ;
 
-                curMouseX += (mouseX - curMouseX) * 0.08;
-                curMouseY += (mouseY - curMouseY) * 0.08;
+                const stepScroll = Math.abs(scrollDiff) < 0.2 ? scrollDiff : scrollDiff * 0.35;
+                scrollZ += stepScroll;
 
-                freeFall.style.transform = `rotateX(${-curMouseY * 5}deg) rotateY(${curMouseX * 5}deg)`;
+                const stepWarp = Math.abs(warpDiff) < 0.2 ? warpDiff : warpDiff * 0.18;
+                warpZ += stepWarp;
+
+                // Live dynamic velocity: purely based on actual movement happening THIS frame
+                velocityZ = stepScroll + stepWarp;
+                pulseEnergy *= 0.92;
+
+                const totalZ = scrollZ + warpZ;
+
+                curMouseX += (mouseX - curMouseX) * 0.06;
+                curMouseY += (mouseY - curMouseY) * 0.06;
+
+                // Batch DOM write — only mutate style when value changes
+                const rx = (-curMouseY * 3.5).toFixed(2);
+                const ry = (curMouseX * 3.5).toFixed(2);
+                const nextTransform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+                if (lastFreeFallTransform !== nextTransform) {
+                    freeFall.style.transform = nextTransform;
+                    lastFreeFallTransform = nextTransform;
+                }
 
                 ctx.clearRect(0, 0, width, height);
 
@@ -1751,7 +2041,7 @@
                 const warpSpeedFactor = Math.abs(velocityZ) * 0.4 + pulseEnergy * 20;
                 for (let i = 0; i < NUM_BEAMS; i++) {
                     const b = beams[i];
-                    let currentZ = (b.z - scrollZ * b.speedMult) % 3600;
+                    let currentZ = (b.z - totalZ * b.speedMult) % 3600;
                     if (currentZ < 0) currentZ += 3600;
 
                     const pScale = 500 / Math.max(80, 3600 - currentZ);
@@ -1770,7 +2060,7 @@
                 // 4. Hexagonal Portal Rings
                 for (let i = 0; i < NUM_RINGS; i++) {
                     const ring = rings[i];
-                    let z = (ring.baseZ - scrollZ) % 3600;
+                    let z = (ring.baseZ - totalZ) % 3600;
                     if (z < 0) z += 3600;
 
                     const depthNorm = (3600 - z) / 3600;
@@ -1873,12 +2163,18 @@
 
                 ctx.restore();
 
-                const isMoving = Math.abs(velocityZ) > 0.05 || isWarping || pulseEnergy > 0.01;
+                const scrollMoving = Math.abs(scrollDiff) > 0.2;
+                const warpMoving = Math.abs(warpDiff) > 0.2;
+                const mouseMoving = Math.abs(mouseX - curMouseX) > 0.005 || Math.abs(mouseY - curMouseY) > 0.005;
+                const isMoving = scrollMoving || warpMoving || isWarping || pulseEnergy > 0.01 || mouseMoving;
                 if (isMoving) {
                     requestAnimationFrame(render);
                 } else {
+                    scrollZ = targetScrollZ;
+                    warpZ = targetWarpZ;
+                    velocityZ = 0;
                     isLoopRunning = false;
-                    setWarpStatus(false);
+                    if (!isWarping) setWarpStatus(false);
                 }
             }
 
@@ -1891,6 +2187,346 @@
 
             ensureRenderLoop();
         });
+
+        /* ============================================================
+           EARTH-19 RADIOACTIVE SPIDER WEB DESCENT & CRAWLING CONTROLLER
+           ============================================================ */
+        document.addEventListener('DOMContentLoaded', () => {
+            const spider = document.getElementById('spider-crawler');
+            const spiderSprite = document.getElementById('spider-sprite');
+            const tagContainer = document.getElementById('hero-tag-container');
+            const webCanvas = document.getElementById('spider-web-canvas');
+            if (!spider || !tagContainer || !webCanvas || !spiderSprite) return;
+
+            // Preload 4-frame walk cycle + idle sprites
+            const walkFrameSources = [
+                './spider_walk_0.png',
+                './spider_walk_1.png',
+                './spider_walk_2.png',
+                './spider_walk_3.png'
+            ];
+            const idleFrameSource = './spider_19.png';
+            
+            walkFrameSources.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+
+            let currentFrameIdx = -1;
+            function setSpiderFrame(src) {
+                if (spiderSprite.getAttribute('src') !== src) {
+                    spiderSprite.setAttribute('src', src);
+                }
+            }
+
+            const webCtx = webCanvas.getContext('2d');
+            function resizeWebCanvas() {
+                webCanvas.width = window.innerWidth;
+                webCanvas.height = window.innerHeight;
+            }
+            resizeWebCanvas();
+            window.addEventListener('resize', resizeWebCanvas);
+
+            // Spider State Machine: 'descending', 'landing', 'roaming', 'scurrying', 'paused'
+            let state = 'descending';
+            let currentX = 0;
+            let currentY = 0;
+            let targetX = 0;
+            let targetY = 0;
+            let currentAngle = 0;
+            let targetAngle = 0;
+            let walkCycle = 0;
+            let pauseTimer = 0;
+            let recoilTimer = 0;
+
+            function initLanding() {
+                const rect = tagContainer.getBoundingClientRect();
+                targetX = rect.width * 0.35;
+                targetY = rect.height * 0.12;
+                currentX = targetX;
+                currentY = -window.innerHeight * 0.75;
+                currentAngle = 0;
+                targetAngle = 0;
+            }
+            initLanding();
+
+            let startTime = performance.now();
+            const descentDuration = 3000;
+
+            function getSpiderScreenPos() {
+                const rect = tagContainer.getBoundingClientRect();
+                return {
+                    x: rect.left + currentX + spider.offsetWidth * 0.5,
+                    y: rect.top + currentY + spider.offsetHeight * 0.22
+                };
+            }
+
+            function pickNewTarget() {
+                const rect = tagContainer.getBoundingClientRect();
+                // Pick points along the letters of JAGADEESH
+                targetX = Math.random() * (rect.width * 0.86) + (rect.width * 0.07);
+                targetY = Math.random() * (rect.height * 0.8) - (rect.height * 0.08);
+                
+                const dx = targetX - currentX;
+                const dy = targetY - currentY;
+                // Spider head is at the bottom of the image (+Y).
+                // Orienting vector (0, 1) towards (dx, dy) requires targetAngle = atan2(dy, dx) - 90 deg.
+                targetAngle = Math.atan2(dy, dx) * (180 / Math.PI) - 90;
+                while (targetAngle - currentAngle > 180) targetAngle -= 360;
+                while (targetAngle - currentAngle < -180) targetAngle += 360;
+            }
+
+            function scurry() {
+                const rect = tagContainer.getBoundingClientRect();
+                const isLeft = currentX < rect.width * 0.5;
+                targetX = isLeft 
+                    ? rect.width * (0.65 + Math.random() * 0.25) 
+                    : rect.width * (0.1 + Math.random() * 0.25);
+                targetY = Math.random() * (rect.height * 0.75);
+                
+                const dx = targetX - currentX;
+                const dy = targetY - currentY;
+                // Head faces forward towards velocity vector
+                targetAngle = Math.atan2(dy, dx) * (180 / Math.PI) - 90;
+                while (targetAngle - currentAngle > 180) targetAngle -= 360;
+                while (targetAngle - currentAngle < -180) targetAngle += 360;
+
+                state = 'scurrying';
+                pauseTimer = 0;
+            }
+
+            spider.addEventListener('click', (e) => {
+                e.stopPropagation();
+                scurry();
+            });
+            tagContainer.addEventListener('mousemove', (e) => {
+                if (state === 'descending') return;
+                const rect = tagContainer.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+                const dist = Math.hypot(mouseX - currentX, mouseY - currentY);
+                if (dist < 75 && state !== 'scurrying') {
+                    scurry();
+                }
+            });
+
+            let lastTime = performance.now();
+            let isSpiderVisible = true;
+            let isSpiderLoopRunning = false;
+            let webCleared = false;
+
+            const heroElem = document.getElementById('hero');
+            if ('IntersectionObserver' in window && heroElem) {
+                const spiderObserver = new IntersectionObserver((entries) => {
+                    isSpiderVisible = entries[0].isIntersecting;
+                    if (isSpiderVisible && !isSpiderLoopRunning) {
+                        isSpiderLoopRunning = true;
+                        lastTime = performance.now();
+                        requestAnimationFrame(updateSpider);
+                    }
+                }, { threshold: 0.05 });
+                spiderObserver.observe(heroElem);
+            }
+
+            function updateSpider(now) {
+                if (!isSpiderVisible) {
+                    isSpiderLoopRunning = false;
+                    return;
+                }
+                isSpiderLoopRunning = true;
+
+                const dt = Math.min((now - lastTime) / 1000, 0.1);
+                lastTime = now;
+
+                if (state === 'descending' || state === 'landing') {
+                    webCtx.clearRect(0, 0, webCanvas.width, webCanvas.height);
+                    webCleared = false;
+                } else if (!webCleared) {
+                    webCtx.clearRect(0, 0, webCanvas.width, webCanvas.height);
+                    webCleared = true;
+                }
+
+                if (state === 'descending') {
+                    setSpiderFrame(idleFrameSource);
+
+                    const elapsed = now - startTime;
+                    const progress = Math.min(elapsed / descentDuration, 1);
+                    
+                    const ease = 1 - Math.pow(1 - progress, 3);
+                    const startY = -window.innerHeight * 0.75;
+                    currentY = startY + (targetY - startY) * ease;
+
+                    // Pendulum swinging rappel
+                    const swing = Math.sin(elapsed * 0.0035) * (1 - progress * 0.6) * 12;
+                    currentAngle = swing;
+
+                    // Draw silk web line
+                    const pos = getSpiderScreenPos();
+                    if (pos.y > 0) {
+                        webCtx.save();
+                        // Glowing cyan aura around silk
+                        webCtx.strokeStyle = 'rgba(0, 243, 255, 0.45)';
+                        webCtx.lineWidth = 3;
+                        webCtx.beginPath();
+                        webCtx.moveTo(pos.x, 0);
+                        webCtx.lineTo(pos.x, pos.y);
+                        webCtx.stroke();
+
+                        // Core silk line
+                        webCtx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+                        webCtx.lineWidth = 1.2;
+                        webCtx.beginPath();
+                        webCtx.moveTo(pos.x, 0);
+                        webCtx.lineTo(pos.x, pos.y);
+                        webCtx.stroke();
+                        webCtx.restore();
+                    }
+
+                    if (progress >= 1) {
+                        state = 'landing';
+                        recoilTimer = now;
+                        currentY = targetY;
+                        setTimeout(() => {
+                            pickNewTarget();
+                            state = 'roaming';
+                        }, 700);
+                    }
+                } else if (state === 'landing') {
+                    setSpiderFrame(idleFrameSource);
+
+                    // Silk snaps & recoils upwards
+                    const snapElapsed = (now - recoilTimer) / 1000;
+                    if (snapElapsed < 0.5) {
+                        const alpha = Math.max(0, 1 - snapElapsed / 0.5);
+                        const pos = getSpiderScreenPos();
+                        const snapY = pos.y * (1 - snapElapsed * 2.0);
+                        webCtx.save();
+                        webCtx.strokeStyle = `rgba(0, 243, 255, ${alpha * 0.8})`;
+                        webCtx.lineWidth = 1.5;
+                        webCtx.beginPath();
+                        webCtx.moveTo(pos.x, 0);
+                        webCtx.lineTo(pos.x, Math.max(0, snapY));
+                        webCtx.stroke();
+                        webCtx.restore();
+                    }
+                } else if (state === 'roaming' || state === 'scurrying') {
+                    const speed = state === 'scurrying' ? 140 : 44;
+                    const dx = targetX - currentX;
+                    const dy = targetY - currentY;
+                    const dist = Math.hypot(dx, dy);
+
+                    currentAngle += (targetAngle - currentAngle) * Math.min(dt * 7.5, 1);
+
+                    if (dist > 4) {
+                        // Advance walk cycle for leg stride animation
+                        walkCycle += dt * (state === 'scurrying' ? 22 : 11);
+                        const frameIdx = Math.floor(walkCycle) % 4;
+                        setSpiderFrame(walkFrameSources[frameIdx]);
+
+                        const step = Math.min(speed * dt, dist);
+                        currentX += (dx / dist) * step;
+                        currentY += (dy / dist) * step;
+                    } else {
+                        state = 'paused';
+                        setSpiderFrame(idleFrameSource);
+                        pauseTimer = (state === 'scurrying' ? 0.6 : (1.2 + Math.random() * 2.0));
+                    }
+                } else if (state === 'paused') {
+                    setSpiderFrame(idleFrameSource);
+                    pauseTimer -= dt;
+                    if (Math.random() < 0.02) {
+                        currentAngle += (Math.random() - 0.5) * 8;
+                    }
+                    if (pauseTimer <= 0) {
+                        pickNewTarget();
+                        state = 'roaming';
+                    }
+                }
+
+                // Authentic crawling dynamics:
+                // Active legs move via sprite cycle, combined with subtle body heave and stride yaw
+                const isWalking = (state === 'roaming' || state === 'scurrying');
+                const crawlBob = isWalking ? Math.sin(walkCycle * 2) * (state === 'scurrying' ? 2.5 : 1.2) : 0;
+                const crawlYaw = isWalking ? Math.sin(walkCycle) * (state === 'scurrying' ? 3.5 : 1.8) : 0;
+                const scaleWobble = isWalking ? (1 + Math.cos(walkCycle * 2) * 0.035) : 1;
+
+                spider.style.transform = `translate(${currentX}px, ${currentY + crawlBob}px) rotate(${currentAngle + crawlYaw}deg) scale(${scaleWobble})`;
+
+                if (isSpiderVisible) {
+                    requestAnimationFrame(updateSpider);
+                } else {
+                    isSpiderLoopRunning = false;
+                }
+            }
+
+            if (isSpiderVisible) {
+                isSpiderLoopRunning = true;
+                requestAnimationFrame(updateSpider);
+            }
+        });
+    </script>
+
+    <!-- Music Player Logic -->
+    <script>
+        (function () {
+            const audio     = document.getElementById('bg-music');
+            const btn       = document.getElementById('music-btn');
+            const iconInner = document.getElementById('music-icon-inner');
+            let started     = false;
+            let muted       = false;
+
+            function setPlaying(playing) {
+                if (playing) {
+                    btn.classList.add('playing');
+                    iconInner.textContent = '⏸';
+                } else {
+                    btn.classList.remove('playing');
+                    iconInner.textContent = '▶';
+                }
+            }
+
+            // Button click: toggle play/pause (always takes priority)
+            window.toggleMusic = function () {
+                // Mark as started so onFirstInteraction won't fire again
+                started = true;
+                if (audio.paused) {
+                    muted = false;
+                    audio.play().then(() => setPlaying(true)).catch(() => {});
+                } else {
+                    audio.pause();
+                    muted = true;
+                    setPlaying(false);
+                }
+            };
+
+            // On first non-button interaction, auto-start music
+            function onFirstInteraction(e) {
+                // Ignore clicks on the music button itself (toggleMusic handles those)
+                if (e && btn.contains(e.target)) return;
+                if (started || muted) return;
+                started = true;
+                audio.volume = 0.35;
+                audio.play().then(() => setPlaying(true)).catch(() => {});
+                document.removeEventListener('click',      onFirstInteraction);
+                document.removeEventListener('keydown',    onFirstInteraction);
+                document.removeEventListener('touchstart', onFirstInteraction);
+                document.removeEventListener('scroll',     onFirstInteraction);
+            }
+
+            document.addEventListener('click',      onFirstInteraction);
+            document.addEventListener('keydown',    onFirstInteraction);
+            document.addEventListener('touchstart', onFirstInteraction);
+            document.addEventListener('scroll',     onFirstInteraction, { passive: true });
+
+            // Attempt immediate autoplay (works in some browsers / when tab is active)
+            audio.volume = 0.35;
+            audio.play().then(() => {
+                started = true;
+                setPlaying(true);
+            }).catch(() => {
+                setPlaying(false); // Blocked — will start on first interaction
+            });
+        })();
     </script>
 </body>
 </html>
